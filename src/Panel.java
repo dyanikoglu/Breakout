@@ -1,0 +1,54 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.*;
+import java.util.Timer;
+
+public class Panel extends JPanel{
+    Paddle paddle;
+    Ball ball;
+    Timer timer;
+
+    public Panel() {
+        setBackground(Color.WHITE);
+        add(new MovingBall());
+        setFocusable(true);
+        initSprites();
+        initTimer();
+        addKeyListener(new listener());
+    }
+
+    private void initTimer() {
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 8);
+    }
+
+    private void initSprites() {
+        paddle = new NormalPaddle(240,400);
+        ball = new Ball();
+    }
+
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(),paddle.getWidth(), paddle.getHeight(), null);
+        g.drawImage(ball.getImage(),ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),null);
+    }
+
+    private class listener extends KeyAdapter {
+        public void keyReleased(KeyEvent e) {
+            paddle.keyReleased(e);
+        }
+        public void keyPressed(KeyEvent e) {
+            paddle.keyPressed(e);
+        }
+    }
+
+    private class ScheduleTask extends TimerTask {
+        public void run() {
+            repaint();
+            Point.move(ball, paddle);
+            paddle.move();
+        }
+    }
+}
