@@ -19,28 +19,28 @@ public class Point  {
         }
 
         if (a <= 0.5) {
-            if (ball.getX() < 0 || ball.getX() > 600) {
+            if (ball.getX() < 24 || ball.getX() > 580) {
                 Sound.play("sound/boing.wav");
                 dirX = -dirX;
             }
-            if (ball.getY() < 0) {
+            if (ball.getY() < 24) {
                 Sound.play("sound/boing.wav");
                 dirY = -dirY;
             }
         }
 
         else {
-            if (ball.getX() < 0) {
+            if (ball.getX() < 24) {
                 Sound.play("sound/boing.wav");
                 dirX = -dirX;
                 dirY = -dirY;
             }
 
-            else if (ball.getX() > 600) {
+            else if (ball.getX() > 580) {
                 Sound.play("sound/boing.wav");
                 dirX = -dirX;
             }
-            if (ball.getY() < 0) {
+            if (ball.getY() < 24) {
                 Sound.play("sound/boing.wav");
                 dirX = -dirX;
                 dirY = -dirY;

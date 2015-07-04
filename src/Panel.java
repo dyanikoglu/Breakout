@@ -10,6 +10,8 @@ public class Panel extends JPanel{
     Ball ball;
     Timer timer;
 
+
+
     public Panel() {
         setBackground(Color.WHITE);
         add(new MovingBall());
@@ -27,12 +29,18 @@ public class Panel extends JPanel{
     private void initSprites() {
         paddle = new NormalPaddle(240,400);
         ball = new Ball();
+        BrickLoader.Load();
     }
 
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(),paddle.getWidth(), paddle.getHeight(), null);
-        g.drawImage(ball.getImage(),ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),null);
+        g.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight(), null);
+        g.drawImage(ball.getImage(), ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight(), null);
+        for (int i = 0; i < 54; i++) {
+            g.drawImage(BrickLoader.brickArr[i].getImage(), BrickLoader.brickArr[i].getX(),
+                    BrickLoader.brickArr[i].getY(), BrickLoader.brickArr[i].getWidth(),
+                    BrickLoader.brickArr[i].getHeight(), this);
+        }
     }
 
     private class listener extends KeyAdapter {

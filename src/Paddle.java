@@ -11,10 +11,10 @@ public class Paddle extends GameObject {
 
     public void move() {
         x += dirX;
-        if(padType!=1 && getX()>490)
-            x=490;
-        else if(padType==1 && getX()>426)
-            x=426;
+        if(padType!=1 && getX()>496)
+            x=496;
+        else if(padType==1 && getX()>432)
+            x=432;
         if(getX()<0) {
             x=0;
         }
