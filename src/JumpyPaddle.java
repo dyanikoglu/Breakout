@@ -8,7 +8,6 @@ public class JumpyPaddle extends Paddle {
     public static void set(Paddle paddle) {
         paddle.setImage("image/paddle_jumpy.png");
         paddle.setWidth(128);
-        paddle.setHeight(24555);
-        System.out.println("a");
+        paddle.setHeight(24);
     }
 }
