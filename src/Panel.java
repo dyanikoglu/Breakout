@@ -14,7 +14,6 @@ public class Panel extends JPanel{
 
     public Panel() {
         setBackground(Color.WHITE);
-        add(new MovingBall());
         setFocusable(true);
         initSprites();
         initTimer();
