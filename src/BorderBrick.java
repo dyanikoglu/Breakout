@@ -6,5 +6,4 @@ public class BorderBrick extends Brick {
         setWidth(24);
         setHeight(24);
     }
-
 }

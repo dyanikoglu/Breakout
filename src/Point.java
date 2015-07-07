@@ -6,7 +6,7 @@ public class Point  {
         if (dirY > 0 && ball.getY() > 380 && ball.getX() < paddle.getX() + paddle.getWidth() && ball.getX() > paddle.getX()) {
             dirY = -dirY;
             Sound.play("sound/boing.wav");
-            if (paddle.padType == 2) {
+            if (paddle.getType() == 2) {
                 Sound.play("sound/laser.wav");
                 dirY--;
                 if(dirX<0)

@@ -10,10 +10,7 @@ public class Panel extends JPanel{
     Ball ball;
     Timer timer;
 
-
-
     public Panel() {
-        setBackground(Color.WHITE);
         setFocusable(true);
         initSprites();
         initTimer();
@@ -22,12 +19,12 @@ public class Panel extends JPanel{
 
     private void initTimer() {
         timer = new Timer();
-        timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 8);
+        timer.scheduleAtFixedRate(new loop(), 1000, 8);
     }
 
     private void initSprites() {
         paddle = new NormalPaddle(240,400);
-        ball = new Ball();
+        ball = new Ball(200,300);
         BrickLoader.Load();
     }
 
@@ -36,9 +33,8 @@ public class Panel extends JPanel{
         g.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight(), null);
         g.drawImage(ball.getImage(), ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight(), null);
         for (int i = 0; i < 54; i++) {
-            g.drawImage(BrickLoader.brickArr[i].getImage(), BrickLoader.brickArr[i].getX(),
-                    BrickLoader.brickArr[i].getY(), BrickLoader.brickArr[i].getWidth(),
-                    BrickLoader.brickArr[i].getHeight(), this);
+            g.drawImage(BrickLoader.brickArr[i].getImage(), BrickLoader.brickArr[i].getX(), BrickLoader.brickArr[i].getY(),
+                    BrickLoader.brickArr[i].getWidth(), BrickLoader.brickArr[i].getHeight(), this);
         }
     }
 
@@ -51,7 +47,7 @@ public class Panel extends JPanel{
         }
     }
 
-    private class ScheduleTask extends TimerTask {
+    private class loop extends TimerTask {
         public void run() {
             repaint();
             Point.move(ball, paddle);

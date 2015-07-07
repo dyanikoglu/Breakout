@@ -1,8 +1,8 @@
 public class Ball extends GameObject {
-    public Ball() {
+    public Ball(int x,int y) {
         setImage("image/ball.png");
-        setX(200);
-        setY(300);
+        setX(x);
+        setY(y);
         setWidth(22);
         setHeight(22);
     }
