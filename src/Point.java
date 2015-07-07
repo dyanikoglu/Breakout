@@ -77,7 +77,7 @@ public class Point  {
         }
 
         if (ball.getY() > 400)
-            System.exit(1);
+            Panel.ball = new Ball(200,300);
 
         ball.x += dirX;
         ball.y += dirY;

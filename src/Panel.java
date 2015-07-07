@@ -7,7 +7,7 @@ import java.util.Timer;
 
 public class Panel extends JPanel{
     Paddle paddle;
-    Ball ball;
+    static Ball ball; // non-static
     Timer timer;
 
     public Panel() {
