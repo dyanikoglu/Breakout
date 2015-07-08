@@ -33,8 +33,8 @@ public class Panel extends JPanel{
         g.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight(), null);
         g.drawImage(ball.getImage(), ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight(), null);
         for (int i = 0; i < 54; i++) {
-            g.drawImage(BrickLoader.brickArr[i].getImage(), BrickLoader.brickArr[i].getX(), BrickLoader.brickArr[i].getY(),
-                    BrickLoader.brickArr[i].getWidth(), BrickLoader.brickArr[i].getHeight(), this);
+            g.drawImage(BrickLoader.bbrickArr[i].getImage(), BrickLoader.bbrickArr[i].getX(), BrickLoader.bbrickArr[i].getY(),
+                    BrickLoader.bbrickArr[i].getWidth(), BrickLoader.bbrickArr[i].getHeight(), this);
         }
     }
 
