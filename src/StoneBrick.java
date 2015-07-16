@@ -1,5 +1,4 @@
 public class StoneBrick extends Brick {
-
     public StoneBrick(int x, int y) {
         super(x,y);
         setHeight(24);

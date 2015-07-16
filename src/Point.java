@@ -1,74 +1,10 @@
 public class Point  {
-    static int dirX=1,dirY=1;
+    static int dirX=1,dirY=1, velX=0, velY=0;
 
-    public static void move(Ball ball,Paddle paddle) {
-        double a = Math.random();
-        if (dirY > 0 && ball.getY() > 380 && ball.getX() < paddle.getX() + paddle.getWidth() && ball.getX() > paddle.getX()) {
-            dirY = -dirY;
-            if (paddle.getType() == 2) {
-                dirY--;
-                if(dirX<0)
-                    dirX--;
-                else
-                    dirX++;
-            }
-            paddle.setPaddle(paddle);
-            paddle.changePaddle(paddle);
-        }
+    public static void checkCollision(Ball ball) { // edit
+        Brick col = new Brick();
+        col.colResponse(ball);
 
-        if (a <= 0.5) {
-            if(ball.getY() < 388) {
-                if (ball.getX() < 24 || ball.getX() > 580) {
-                    dirX = -dirX;
-                }
-                if (ball.getY() < 24) {
-                    dirY = -dirY;
-                }
-            }
-            else {
-                if (ball.getX() < 0 || ball.getX() > 604) {
-                    dirX = -dirX;
-                }
-                if (ball.getY() < 0) {
-                    dirY = -dirY;
-                }
-            }
-        }
-
-        else {
-            if(ball.getY() < 388) {
-                if (ball.getX() < 24) {
-                    dirX = -dirX;
-                    dirY = -dirY;
-                } else if (ball.getX() > 580) {
-                    dirX = -dirX;
-                    dirY = -dirY;
-                }
-                if (ball.getY() < 24) {
-                    dirX = -dirX;
-                    dirY = -dirY;
-                }
-            }
-            else {
-                if (ball.getX() < 0) {
-                    dirX = -dirX;
-                    dirY = -dirY;
-                } else if (ball.getX() > 604) {
-                    dirX = -dirX;
-                    dirY = -dirY;
-                }
-                if (ball.getY() < 0) {
-                    dirX = -dirX;
-                    dirY = -dirY;
-                }
-            }
-        }
-
-
-        if (ball.getY() > 400)
-            Panel.ball = new Ball(200,300);
-
-        ball.x += dirX;
-        ball.y += dirY;
+        Panel.paddle.colResponse(ball);
     }
 }

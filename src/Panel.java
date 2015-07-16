@@ -6,8 +6,8 @@ import java.util.*;
 import java.util.Timer;
 
 public class Panel extends JPanel{
-    Paddle paddle;
-    static Ball ball; // non-static
+    static Paddle paddle;
+    Ball ball; // non-static
     Timer timer;
 
     public Panel() {
@@ -23,7 +23,7 @@ public class Panel extends JPanel{
     }
 
     private void initSprites() {
-        paddle = new NormalPaddle(240,400);
+        paddle = new NormalPaddle(240,470);
         ball = new Ball(200,300);
         BrickLoader.create();
     }
@@ -33,8 +33,10 @@ public class Panel extends JPanel{
         g.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight(), null);
         g.drawImage(ball.getImage(), ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight(), null);
         for (int i = 0; i < BrickLoader.brickArr.length; i++) {
-            g.drawImage(BrickLoader.brickArr[i].getImage(), BrickLoader.brickArr[i].getX(), BrickLoader.brickArr[i].getY(),
-                    BrickLoader.brickArr[i].getWidth(), BrickLoader.brickArr[i].getHeight(), this);
+            if(!BrickLoader.brickArr[i].isDestroyed()) {
+                g.drawImage(BrickLoader.brickArr[i].getImage(), BrickLoader.brickArr[i].getX(), BrickLoader.brickArr[i].getY(),
+                        BrickLoader.brickArr[i].getWidth(), BrickLoader.brickArr[i].getHeight(), this);
+            }
         }
     }
 
@@ -50,7 +52,7 @@ public class Panel extends JPanel{
     private class loop extends TimerTask {
         public void run() {
             repaint();
-            Point.move(ball, paddle);
+            Point.checkCollision(ball);
             paddle.move();
         }
     }

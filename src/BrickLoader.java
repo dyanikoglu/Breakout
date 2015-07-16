@@ -3,8 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class BrickLoader {
-    public static Brick brickArr[] = new Brick[106];
-    public static String splitArr[][] = new String[106][];
+    public static Brick brickArr[] = new Brick[110];
+    public static String splitArr[][] = new String[110][];
 
     public static void create() {
         read();

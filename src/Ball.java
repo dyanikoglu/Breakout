@@ -3,7 +3,7 @@ public class Ball extends GameObject {
         setImage("image/ball.png");
         setX(x);
         setY(y);
-        setWidth(22);
-        setHeight(22);
+        setWidth(15);
+        setHeight(15);
     }
 }
