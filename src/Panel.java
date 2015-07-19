@@ -7,14 +7,14 @@ import java.util.Timer;
 
 public class Panel extends JPanel{
     static Paddle paddle;
-    private Ball ball; // non-static
+    private Ball ball;
     private Timer timer;
 
     public Panel() {
         setFocusable(true);
         initObjects();
         initTimer();
-        addKeyListener(new listener());
+        addKeyListener(new Listener());
     }
 
     private void initTimer() {
@@ -40,7 +40,7 @@ public class Panel extends JPanel{
         }
     }
 
-    private class listener extends KeyAdapter {
+    private class Listener extends KeyAdapter {
         public void keyReleased(KeyEvent e) {
             paddle.keyReleased(e);
         }

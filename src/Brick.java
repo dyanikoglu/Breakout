@@ -1,11 +1,12 @@
 public class Brick extends GameObject implements ICollidable {
 
 /**
-    brickType 0: normalBrick
-    brickType 1: stoneBrick
-    brickType 2: gemBrick
-    brickType 3: glassBrick
-    brickType 4: borderBrick
+    * brickType 0 : normalBrick
+    * brickType 1 : stoneBrick
+    * brickType 2 : gemBrick
+    * brickType 3 : glassBrick
+    * brickType 4 : borderBrick
+    * brickType 5 : stoneBrick(broken)
 */
     private int brickType;
     private boolean status;
@@ -20,6 +21,11 @@ public class Brick extends GameObject implements ICollidable {
         setX(x);
         setY(y);
         status = false;
+    }
+
+    private void hit() {
+        setIcon("image/brick_stone_2.png");
+        setType(5);
     }
 
     public void setType(int type) {
@@ -47,7 +53,7 @@ public class Brick extends GameObject implements ICollidable {
                 java.awt.Point pT = new java.awt.Point(ball.getX(), ball.getY()-1);
                 java.awt.Point pB = new java.awt.Point(ball.getX(), ball.getY() + ball.getHeight()+1);
 
-                if (BrickLoader.brickArr[i].getType()!=4) {
+                if (BrickLoader.brickArr[i].getType()!=4 ) {
                     if (BrickLoader.brickArr[i].getRect().contains(pR) && BrickLoader.brickArr[i].getType()!=3) {
                         Point.dirX=-1;
                     }
@@ -68,8 +74,14 @@ public class Brick extends GameObject implements ICollidable {
                     }
 
                     if (BrickLoader.brickArr[i].getType() != 4) {
-                        BrickLoader.brickArr[i].setStatus(true);
+                        if(BrickLoader.brickArr[i].getType() == 1) {
+                            BrickLoader.brickArr[i].hit();
+                        }
+                        else {
+                            BrickLoader.brickArr[i].setStatus(true);
+                        }
                     }
+
                     break;
                 }
 
@@ -85,6 +97,7 @@ public class Brick extends GameObject implements ICollidable {
                             Point.dirY=1;
                         }
                     }
+
                     else if (BrickLoader.brickArr[i].getRect().contains(pL) && BrickLoader.brickArr[i].getY()!=0) {
                         double rnd = Math.random();
                         if(rnd>=0.5) {
@@ -106,6 +119,7 @@ public class Brick extends GameObject implements ICollidable {
                         else {
                             Point.dirX=-1;
                         }
+
                     }
                     else if (BrickLoader.brickArr[i].getRect().contains(pB) && BrickLoader.brickArr[i].getY()==0) {
                         Point.dirY=-1;
@@ -117,13 +131,14 @@ public class Brick extends GameObject implements ICollidable {
                             Point.dirX=-1;
                         }
                     }
+
                     break;
                 }
             }
         }
 
         if (ball.getY() > 480)
-            System.exit(1);
+            System.exit(1); //end game
 
         if(Point.dirX==1) {
             if(Point.dirY==1) {

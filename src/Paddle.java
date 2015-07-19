@@ -2,11 +2,11 @@ import java.awt.event.KeyEvent;import java.lang.Math;
 
 public class Paddle extends GameObject implements ICollidable {
 
-    /**
-     * padType 0 : NormalPaddle
-     * padType 1 : LargePaddle
-     * padType 2 : JumpyPaddle
-     */
+/**
+    * padType 0 : NormalPaddle
+    * padType 1 : LargePaddle
+    * padType 2 : JumpyPaddle
+*/
     private int padType;
     private int padDir;
 
@@ -39,11 +39,13 @@ public class Paddle extends GameObject implements ICollidable {
     }
 
     private void setType(Paddle paddle) {
-        if (Math.random() <= 0.1 && paddle.getType() != 2) {
-            if (Math.random() <= 0.5)
+        if (Math.random() < 0.1 && paddle.getType() != 2) {
+            if (Math.random() < 0.5) {
                 paddle.padType = 1;
-            else
+            }
+            else {
                 paddle.padType = 2;
+            }
         }
 
         else if (paddle.getType() != 1) {
@@ -52,12 +54,15 @@ public class Paddle extends GameObject implements ICollidable {
     }
 
     private void applyType(Paddle paddle) {
-        if (paddle.getType() == 0)
+        if (paddle.getType() == 0) {
             NormalPaddle.set(paddle);
-        else if (paddle.getType() == 1)
+        }
+        else if (paddle.getType() == 1) {
             LargePaddle.set(paddle);
-        else if (paddle.getType() == 2)
+        }
+        else if (paddle.getType() == 2) {
             JumpyPaddle.set(paddle);
+        }
     }
 
     public boolean colDetect(Ball ball) {
