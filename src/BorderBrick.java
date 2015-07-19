@@ -5,6 +5,6 @@ public class BorderBrick extends Brick {
         setIcon("image/borderbrick.png");
         setWidth(24);
         setHeight(24);
-        brickType=4;
+        setType(4);
     }
 }

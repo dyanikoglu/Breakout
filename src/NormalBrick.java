@@ -5,6 +5,6 @@ public class NormalBrick extends Brick {
         setHeight(24);
         setWidth(72);
         setIcon("image/brick_normal.png");
-        brickType=0;
+        setType(0);
     }
 }

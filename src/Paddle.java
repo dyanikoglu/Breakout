@@ -7,21 +7,21 @@ public class Paddle extends GameObject implements ICollidable {
      * padType 1 : LargePaddle
      * padType 2 : JumpyPaddle
      */
-    int padType;
-    int padDir;
+    private int padType;
+    private int padDir;
 
     public int getType() {
         return padType;
     }
 
     public void move() {
-        x += padDir;
+        setX(getX()+padDir);
         if (getType() != 1 && getX() > 496)
-            x = 496;
+            setX(496);
         else if (getType() == 1 && getX() > 432)
-            x = 432;
+            setX(432);
         if (getX() < 0)
-            x = 0;
+            setX(0);
     }
 
     public void keyPressed(KeyEvent e) {
@@ -38,8 +38,8 @@ public class Paddle extends GameObject implements ICollidable {
             padDir = 0;
     }
 
-    public void setType(Paddle paddle) {
-        if (Math.random() <= 0.9 && paddle.getType() != 2) {
+    private void setType(Paddle paddle) {
+        if (Math.random() <= 0.1 && paddle.getType() != 2) {
             if (Math.random() <= 0.5)
                 paddle.padType = 1;
             else
@@ -51,7 +51,7 @@ public class Paddle extends GameObject implements ICollidable {
         }
     }
 
-    public void applyType(Paddle paddle) {
+    private void applyType(Paddle paddle) {
         if (paddle.getType() == 0)
             NormalPaddle.set(paddle);
         else if (paddle.getType() == 1)
@@ -75,5 +75,4 @@ public class Paddle extends GameObject implements ICollidable {
             applyType(this);
         }
     }
-
 }

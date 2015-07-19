@@ -5,6 +5,6 @@ public class GemBrick extends Brick{
         setHeight(24);
         setWidth(72);
         setIcon("image/brick_gem.png");
-        brickType=2;
+        setType(2);
     }
 }

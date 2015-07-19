@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameObject {
-    int x,y,width,height;
-    Image img;
+    private int x,y,width,height;
+    private Image img;
 
     public void setIcon(String imageLoc) {
         ImageIcon imgIcon = new ImageIcon(this.getClass().getResource(imageLoc));

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class BrickLoader {
     public static Brick brickArr[] = new Brick[110];
-    public static String splitArr[][] = new String[110][];
+    private static String splitArr[][] = new String[110][];
     private static Path workingDirectory= Paths.get("").toAbsolutePath();
 
     public static void create() {
@@ -28,9 +28,9 @@ public class BrickLoader {
                 brickArr[i]= new BorderBrick(Integer.parseInt(splitArr[i][0]),Integer.parseInt(splitArr[i][1]));
             }
         }
-}
+    }
 
-    public static void read() {
+    private static void read() {
         int i=0;
         File f = new File(workingDirectory.toString()+"\\src\\txt\\bricks.txt");
         try {

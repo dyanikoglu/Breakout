@@ -5,6 +5,6 @@ public class GlassBrick extends Brick {
         setHeight(24);
         setWidth(72);
         setIcon("image/brick_glass.png");
-        brickType=3;
+        setType(3);
     }
 }

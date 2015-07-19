@@ -4,6 +4,6 @@ public class StoneBrick extends Brick {
         setHeight(24);
         setWidth(72);
         setIcon("image/brick_stone_1.png");
-        brickType=1;
+        setType(1);
     }
 }

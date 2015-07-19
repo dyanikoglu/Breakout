@@ -1,5 +1,5 @@
 public class Brick extends GameObject implements ICollidable {
-    boolean status;
+
 /**
     brickType 0: normalBrick
     brickType 1: stoneBrick
@@ -7,7 +7,8 @@ public class Brick extends GameObject implements ICollidable {
     brickType 3: glassBrick
     brickType 4: borderBrick
 */
-    int brickType;
+    private int brickType;
+    private boolean status;
 
     public Brick() {
         setX(0);
@@ -21,7 +22,11 @@ public class Brick extends GameObject implements ICollidable {
         status = false;
     }
 
-    public int getType() {
+    public void setType(int type) {
+        this.brickType=type;
+    }
+
+    private int getType() {
         return brickType;
     }
 
@@ -29,7 +34,7 @@ public class Brick extends GameObject implements ICollidable {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    private void setStatus(boolean status) {
         this.status = status;
     }
 
@@ -65,14 +70,13 @@ public class Brick extends GameObject implements ICollidable {
                     if (BrickLoader.brickArr[i].getType() != 4) {
                         BrickLoader.brickArr[i].setStatus(true);
                     }
-
                     break;
                 }
 
                 else if(BrickLoader.brickArr[i].getType()==4) {
                     if (BrickLoader.brickArr[i].getRect().contains(pR) && BrickLoader.brickArr[i].getY()!=0) {
                         double rnd = Math.random();
-                        if(rnd<0.5) {
+                        if(rnd>=0.5) {
                             Point.dirX = -1;
                             Point.dirY = -1;
                         }
@@ -83,7 +87,7 @@ public class Brick extends GameObject implements ICollidable {
                     }
                     else if (BrickLoader.brickArr[i].getRect().contains(pL) && BrickLoader.brickArr[i].getY()!=0) {
                         double rnd = Math.random();
-                        if(rnd<0.5) {
+                        if(rnd>=0.5) {
                             Point.dirX = 1;
                             Point.dirY=-1;
                         }
@@ -95,11 +99,24 @@ public class Brick extends GameObject implements ICollidable {
 
                     if (BrickLoader.brickArr[i].getRect().contains(pT) && BrickLoader.brickArr[i].getY()==0) {
                         Point.dirY=1;
+                        double rnd = Math.random();
+                        if(rnd<0.5) {
+                            Point.dirX = 1;
+                        }
+                        else {
+                            Point.dirX=-1;
+                        }
                     }
                     else if (BrickLoader.brickArr[i].getRect().contains(pB) && BrickLoader.brickArr[i].getY()==0) {
                         Point.dirY=-1;
+                        double rnd = Math.random();
+                        if(rnd<0.5) {
+                            Point.dirX = 1;
+                        }
+                        else {
+                            Point.dirX=-1;
+                        }
                     }
-
                     break;
                 }
             }
@@ -110,22 +127,22 @@ public class Brick extends GameObject implements ICollidable {
 
         if(Point.dirX==1) {
             if(Point.dirY==1) {
-                ball.x+=Point.dirX+Math.abs(Point.velX);
-                ball.y+=Point.dirY+Math.abs(Point.velY);
+                ball.setX(ball.getX() + Point.dirX + Math.abs(Point.velX));
+                ball.setY(ball.getY() + Point.dirY + Math.abs(Point.velY));
             }
             else {
-                ball.x+=Point.dirX+Math.abs(Point.velX);
-                ball.y+=Point.dirY-Math.abs(Point.velY);
+                ball.setX(ball.getX() + Point.dirX + Math.abs(Point.velX));
+                ball.setY(ball.getY() + Point.dirY - Math.abs(Point.velY));
             }
         }
         else if(Point.dirX==-1) {
             if(Point.dirY==1) {
-                ball.x+=Point.dirX-Math.abs(Point.velX);
-                ball.y+=Point.dirY+Math.abs(Point.velY);
+                ball.setX(ball.getX() + Point.dirX - Math.abs(Point.velX));
+                ball.setY(ball.getY() + Point.dirY + Math.abs(Point.velY));
             }
             else {
-                ball.x+=Point.dirX-Math.abs(Point.velX);
-                ball.y+=Point.dirY-Math.abs(Point.velY);
+                ball.setX(ball.getX()+Point.dirX - Math.abs(Point.velX));
+                ball.setY(ball.getY() + Point.dirY - Math.abs(Point.velY));
             }
         }
     }

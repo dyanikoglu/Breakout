@@ -7,8 +7,8 @@ import java.util.Timer;
 
 public class Panel extends JPanel{
     static Paddle paddle;
-    Ball ball; // non-static
-    Timer timer;
+    private Ball ball; // non-static
+    private Timer timer;
 
     public Panel() {
         setFocusable(true);
