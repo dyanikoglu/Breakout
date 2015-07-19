@@ -1,10 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class BrickLoader {
     public static Brick brickArr[] = new Brick[110];
     public static String splitArr[][] = new String[110][];
+    private static Path workingDirectory= Paths.get("").toAbsolutePath();
 
     public static void create() {
         read();
@@ -29,7 +32,7 @@ public class BrickLoader {
 
     public static void read() {
         int i=0;
-        File f = new File("C:\\Users\\dyani\\IdeaProjects\\Breakout\\src\\txt\\bricks.txt");
+        File f = new File(workingDirectory.toString()+"\\src\\txt\\bricks.txt");
         try {
             Scanner scan = new Scanner(f);
 

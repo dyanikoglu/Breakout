@@ -1,54 +1,60 @@
 public class Brick extends GameObject implements ICollidable {
-    boolean destroyed;
+    boolean status;
+/**
+    brickType 0: normalBrick
+    brickType 1: stoneBrick
+    brickType 2: gemBrick
+    brickType 3: glassBrick
+    brickType 4: borderBrick
+*/
     int brickType;
 
     public Brick() {
+        setX(0);
+        setY(0);
+        status = false;
     }
 
     public Brick(int x, int y) {
         setX(x);
         setY(y);
-        destroyed = false;
+        status = false;
     }
 
     public int getType() {
         return brickType;
     }
 
-    public boolean isDestroyed() {
-        return destroyed;
+    public boolean getStatus() {
+        return status;
     }
 
-    public void setDestroyed(boolean destroyed) {
-        this.destroyed = true;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public void colResponse(Ball ball) {
         for(int i=0;i<110;i++) {
-            if (!BrickLoader.brickArr[i].isDestroyed() && BrickLoader.brickArr[i].colDetect(ball)) {
+            if (!BrickLoader.brickArr[i].getStatus() && BrickLoader.brickArr[i].colDetect(ball)) {
 
-                int ballLeft = (int) ball.getRectangle().getMinX();
-                int ballHeight = (int) ball.getRectangle().getHeight();
-                int ballWidth = (int) ball.getRectangle().getWidth();
-                int ballTop = (int) ball.getRectangle().getMinY();
-
-                java.awt.Point pointRight = new java.awt.Point(ballLeft + ballWidth, ballTop+1);
-                java.awt.Point pointLeft = new java.awt.Point(ballLeft, ballTop-1);
-                java.awt.Point pointTop = new java.awt.Point(ballLeft, ballTop-1);
-                java.awt.Point pointBottom = new java.awt.Point(ballLeft, ballTop + ballHeight+1);
+                java.awt.Point pR = new java.awt.Point(ball.getX() + ball.getWidth(), ball.getY()+1);
+                java.awt.Point pL = new java.awt.Point(ball.getX(), ball.getY()-1);
+                java.awt.Point pT = new java.awt.Point(ball.getX(), ball.getY()-1);
+                java.awt.Point pB = new java.awt.Point(ball.getX(), ball.getY() + ball.getHeight()+1);
 
                 if (BrickLoader.brickArr[i].getType()!=4) {
-                    if (BrickLoader.brickArr[i].getRectangle().contains(pointRight) && BrickLoader.brickArr[i].getType()!=3) {
+                    if (BrickLoader.brickArr[i].getRect().contains(pR) && BrickLoader.brickArr[i].getType()!=3) {
                         Point.dirX=-1;
                     }
-                    else if (BrickLoader.brickArr[i].getRectangle().contains(pointLeft) && BrickLoader.brickArr[i].getType()!=3) {
+
+                    else if (BrickLoader.brickArr[i].getRect().contains(pL) && BrickLoader.brickArr[i].getType()!=3) {
                         Point.dirX=1;
                     }
 
-                    if (BrickLoader.brickArr[i].getRectangle().contains(pointTop) && BrickLoader.brickArr[i].getType()!=3) {
+                    if (BrickLoader.brickArr[i].getRect().contains(pT) && BrickLoader.brickArr[i].getType()!=3) {
                         Point.dirY=1;
                     }
-                    else if (BrickLoader.brickArr[i].getRectangle().contains(pointBottom) && BrickLoader.brickArr[i].getType()!=3) {
+                    else if (BrickLoader.brickArr[i].getRect().contains(pB) && BrickLoader.brickArr[i].getType()!=3) {
                         Point.dirY=-1;
                     }
 
@@ -57,14 +63,14 @@ public class Brick extends GameObject implements ICollidable {
                     }
 
                     if (BrickLoader.brickArr[i].getType() != 4) {
-                        BrickLoader.brickArr[i].setDestroyed(true);
+                        BrickLoader.brickArr[i].setStatus(true);
                     }
 
                     break;
                 }
 
                 else if(BrickLoader.brickArr[i].getType()==4) {
-                    if (BrickLoader.brickArr[i].getRectangle().contains(pointRight) && BrickLoader.brickArr[i].getY()!=0) {
+                    if (BrickLoader.brickArr[i].getRect().contains(pR) && BrickLoader.brickArr[i].getY()!=0) {
                         double rnd = Math.random();
                         if(rnd<0.5) {
                             Point.dirX = -1;
@@ -75,7 +81,7 @@ public class Brick extends GameObject implements ICollidable {
                             Point.dirY=1;
                         }
                     }
-                    else if (BrickLoader.brickArr[i].getRectangle().contains(pointLeft) && BrickLoader.brickArr[i].getY()!=0) {
+                    else if (BrickLoader.brickArr[i].getRect().contains(pL) && BrickLoader.brickArr[i].getY()!=0) {
                         double rnd = Math.random();
                         if(rnd<0.5) {
                             Point.dirX = 1;
@@ -87,10 +93,10 @@ public class Brick extends GameObject implements ICollidable {
                         }
                     }
 
-                    if (BrickLoader.brickArr[i].getRectangle().contains(pointTop) && BrickLoader.brickArr[i].getY()==0) {
+                    if (BrickLoader.brickArr[i].getRect().contains(pT) && BrickLoader.brickArr[i].getY()==0) {
                         Point.dirY=1;
                     }
-                    else if (BrickLoader.brickArr[i].getRectangle().contains(pointBottom) && BrickLoader.brickArr[i].getY()==0) {
+                    else if (BrickLoader.brickArr[i].getRect().contains(pB) && BrickLoader.brickArr[i].getY()==0) {
                         Point.dirY=-1;
                     }
 
@@ -101,7 +107,6 @@ public class Brick extends GameObject implements ICollidable {
 
         if (ball.getY() > 480)
             System.exit(1);
-
 
         if(Point.dirX==1) {
             if(Point.dirY==1) {
@@ -126,6 +131,6 @@ public class Brick extends GameObject implements ICollidable {
     }
 
     public boolean colDetect(Ball ball) {
-        return (ball.getRectangle().intersects(this.getRectangle()));
+        return (ball.getRect().intersects(this.getRect()));
     }
 }

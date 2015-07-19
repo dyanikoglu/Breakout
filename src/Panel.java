@@ -12,7 +12,7 @@ public class Panel extends JPanel{
 
     public Panel() {
         setFocusable(true);
-        initSprites();
+        initObjects();
         initTimer();
         addKeyListener(new listener());
     }
@@ -22,7 +22,7 @@ public class Panel extends JPanel{
         timer.scheduleAtFixedRate(new loop(), 1000, 8);
     }
 
-    private void initSprites() {
+    private void initObjects() {
         paddle = new NormalPaddle(240,470);
         ball = new Ball(200,300);
         BrickLoader.create();
@@ -33,7 +33,7 @@ public class Panel extends JPanel{
         g.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight(), null);
         g.drawImage(ball.getImage(), ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight(), null);
         for (int i = 0; i < BrickLoader.brickArr.length; i++) {
-            if(!BrickLoader.brickArr[i].isDestroyed()) {
+            if(!BrickLoader.brickArr[i].getStatus()) {
                 g.drawImage(BrickLoader.brickArr[i].getImage(), BrickLoader.brickArr[i].getX(), BrickLoader.brickArr[i].getY(),
                         BrickLoader.brickArr[i].getWidth(), BrickLoader.brickArr[i].getHeight(), this);
             }

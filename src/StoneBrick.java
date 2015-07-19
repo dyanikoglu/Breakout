@@ -3,7 +3,7 @@ public class StoneBrick extends Brick {
         super(x,y);
         setHeight(24);
         setWidth(72);
-        setImage("image/brick_stone_1.png");
+        setIcon("image/brick_stone_1.png");
         brickType=1;
     }
 }

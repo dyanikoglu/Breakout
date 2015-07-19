@@ -4,7 +4,7 @@ public class GemBrick extends Brick{
         super(x,y);
         setHeight(24);
         setWidth(72);
-        setImage("image/brick_gem.png");
+        setIcon("image/brick_gem.png");
         brickType=2;
     }
 }

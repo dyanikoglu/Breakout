@@ -1,21 +1,21 @@
 import java.awt.event.KeyEvent;import java.lang.Math;
 
 public class Paddle extends GameObject implements ICollidable {
+
     /**
      * padType 0 : NormalPaddle
      * padType 1 : LargePaddle
      * padType 2 : JumpyPaddle
      */
-
-    static int padType;
-    int keyboardDirX;
+    int padType;
+    int padDir;
 
     public int getType() {
         return padType;
     }
 
     public void move() {
-        x += keyboardDirX;
+        x += padDir;
         if (getType() != 1 && getX() > 496)
             x = 496;
         else if (getType() == 1 && getX() > 432)
@@ -25,32 +25,33 @@ public class Paddle extends GameObject implements ICollidable {
     }
 
     public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-        if (key == KeyEvent.VK_LEFT)
-            keyboardDirX = -4;
-        if (key == KeyEvent.VK_RIGHT)
-            keyboardDirX = 4;
+        if (e.getKeyCode() == KeyEvent.VK_LEFT)
+            padDir = -5;
+        if (e.getKeyCode()  == KeyEvent.VK_RIGHT)
+            padDir = 5;
     }
 
     public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-        if (key == KeyEvent.VK_LEFT)
-            keyboardDirX = 0;
-        if (key == KeyEvent.VK_RIGHT)
-            keyboardDirX = 0;
+        if (e.getKeyCode() == KeyEvent.VK_LEFT)
+            padDir = 0;
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+            padDir = 0;
     }
 
-    public static void setPaddle(Paddle paddle) {
-        if (Math.random() <= 0.1 && paddle.getType() != 2) {
+    public void setType(Paddle paddle) {
+        if (Math.random() <= 0.9 && paddle.getType() != 2) {
             if (Math.random() <= 0.5)
                 paddle.padType = 1;
             else
                 paddle.padType = 2;
-        } else if (paddle.getType() != 1)
+        }
+
+        else if (paddle.getType() != 1) {
             paddle.padType = 0;
+        }
     }
 
-    public static void changePaddle(Paddle paddle) {
+    public void applyType(Paddle paddle) {
         if (paddle.getType() == 0)
             NormalPaddle.set(paddle);
         else if (paddle.getType() == 1)
@@ -70,8 +71,9 @@ public class Paddle extends GameObject implements ICollidable {
                 Point.velY++;
                 Point.velX++;
             }
-            setPaddle(this);
-            changePaddle(this);
+            setType(this);
+            applyType(this);
         }
     }
+
 }

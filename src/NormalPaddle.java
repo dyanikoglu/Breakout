@@ -1,7 +1,7 @@
 public class NormalPaddle extends Paddle {
 
     public NormalPaddle(int x, int y) {
-        setImage("image/paddle.png");
+        setIcon("image/paddle.png");
         setX(x);
         setY(y);
         setWidth(128);
@@ -11,6 +11,6 @@ public class NormalPaddle extends Paddle {
     public static void set(Paddle paddle) {
         paddle.setWidth(128);
         paddle.setHeight(24);
-        paddle.setImage("image/paddle.png");
+        paddle.setIcon("image/paddle.png");
     }
 }
