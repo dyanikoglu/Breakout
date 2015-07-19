@@ -23,11 +23,6 @@ public class Brick extends GameObject implements ICollidable {
         status = false;
     }
 
-    private void hit() {
-        setIcon("image/brick_stone_2.png");
-        setType(5);
-    }
-
     public void setType(int type) {
         this.brickType=type;
     }
@@ -41,7 +36,13 @@ public class Brick extends GameObject implements ICollidable {
     }
 
     private void setStatus(boolean status) {
-        this.status = status;
+        if(this.getType() == 1) {
+            this.setIcon("image/brick_stone_2.png");
+            this.setType(5);
+        }
+        else {
+            this.status = status;
+        }
     }
 
     public void colResponse(Ball ball) {
@@ -50,8 +51,8 @@ public class Brick extends GameObject implements ICollidable {
 
                 java.awt.Point pR = new java.awt.Point(ball.getX() + ball.getWidth(), ball.getY()+1);
                 java.awt.Point pL = new java.awt.Point(ball.getX(), ball.getY()-1);
-                java.awt.Point pT = new java.awt.Point(ball.getX(), ball.getY()-1);
-                java.awt.Point pB = new java.awt.Point(ball.getX(), ball.getY() + ball.getHeight()+1);
+                java.awt.Point pT = new java.awt.Point(ball.getX(), ball.getY());
+                java.awt.Point pB = new java.awt.Point(ball.getX(), ball.getY() + ball.getHeight());
 
                 if (BrickLoader.brickArr[i].getType()!=4 ) {
                     if (BrickLoader.brickArr[i].getRect().contains(pR) && BrickLoader.brickArr[i].getType()!=3) {
@@ -74,12 +75,7 @@ public class Brick extends GameObject implements ICollidable {
                     }
 
                     if (BrickLoader.brickArr[i].getType() != 4) {
-                        if(BrickLoader.brickArr[i].getType() == 1) {
-                            BrickLoader.brickArr[i].hit();
-                        }
-                        else {
-                            BrickLoader.brickArr[i].setStatus(true);
-                        }
+                        BrickLoader.brickArr[i].setStatus(true);
                     }
 
                     break;
@@ -87,8 +83,7 @@ public class Brick extends GameObject implements ICollidable {
 
                 else if(BrickLoader.brickArr[i].getType()==4) {
                     if (BrickLoader.brickArr[i].getRect().contains(pR) && BrickLoader.brickArr[i].getY()!=0) {
-                        double rnd = Math.random();
-                        if(rnd>=0.5) {
+                        if(Math.random()>=0.5) {
                             Point.dirX = -1;
                             Point.dirY = -1;
                         }
@@ -99,8 +94,7 @@ public class Brick extends GameObject implements ICollidable {
                     }
 
                     else if (BrickLoader.brickArr[i].getRect().contains(pL) && BrickLoader.brickArr[i].getY()!=0) {
-                        double rnd = Math.random();
-                        if(rnd>=0.5) {
+                        if(Math.random()>=0.5) {
                             Point.dirX = 1;
                             Point.dirY=-1;
                         }
@@ -112,8 +106,7 @@ public class Brick extends GameObject implements ICollidable {
 
                     if (BrickLoader.brickArr[i].getRect().contains(pT) && BrickLoader.brickArr[i].getY()==0) {
                         Point.dirY=1;
-                        double rnd = Math.random();
-                        if(rnd<0.5) {
+                        if(Math.random()<0.5) {
                             Point.dirX = 1;
                         }
                         else {
@@ -123,8 +116,7 @@ public class Brick extends GameObject implements ICollidable {
                     }
                     else if (BrickLoader.brickArr[i].getRect().contains(pB) && BrickLoader.brickArr[i].getY()==0) {
                         Point.dirY=-1;
-                        double rnd = Math.random();
-                        if(rnd<0.5) {
+                        if(Math.random()<0.5) {
                             Point.dirX = 1;
                         }
                         else {
@@ -137,8 +129,9 @@ public class Brick extends GameObject implements ICollidable {
             }
         }
 
-        if (ball.getY() > 480)
-            System.exit(1); //end game
+        if (ball.getY() > 480) {
+            Panel.isGameOver = true;
+        }
 
         if(Point.dirX==1) {
             if(Point.dirY==1) {

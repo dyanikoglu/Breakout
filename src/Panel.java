@@ -9,6 +9,7 @@ public class Panel extends JPanel{
     static Paddle paddle;
     private Ball ball;
     private Timer timer;
+    public static boolean isGameOver = false;
 
     public Panel() {
         setFocusable(true);
@@ -38,6 +39,10 @@ public class Panel extends JPanel{
                         BrickLoader.brickArr[i].getWidth(), BrickLoader.brickArr[i].getHeight(), this);
             }
         }
+
+        if(isGameOver) {
+            g.clearRect (0, 0, getWidth(), getHeight());
+        }
     }
 
     private class Listener extends KeyAdapter {
@@ -51,9 +56,15 @@ public class Panel extends JPanel{
 
     private class loop extends TimerTask {
         public void run() {
-            repaint();
-            Point.checkCollision(ball);
-            paddle.move();
+            if(!isGameOver) {
+                repaint();
+                Point.checkCollision(ball);
+                paddle.move();
+            }
+            else {
+                repaint();
+                timer.cancel();
+            }
         }
     }
 }
