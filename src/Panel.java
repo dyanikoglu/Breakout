@@ -25,7 +25,7 @@ public class Panel extends JPanel{
 
     private void initObjects() {
         paddle = new NormalPaddle(240,470);
-        ball = new Ball(210,300);
+        ball = new Ball(200,250);
         BrickLoader.create();
     }
 
