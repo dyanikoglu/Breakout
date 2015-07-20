@@ -5,7 +5,9 @@ public class Point  {
         Brick control = new Brick();
         control.colResponse(ball);
         Panel.paddle.colResponse(ball);
+    }
 
+    public static void checkVelDir(Ball ball) {
         if(dirX==1) {
             if(dirY==1) {
                 ball.setX(ball.getX() + dirX + Math.abs(velX));

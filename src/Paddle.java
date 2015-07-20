@@ -10,10 +10,6 @@ public class Paddle extends GameObject implements ICollidable {
     private int padType;
     private int padDir;
 
-    public int getType() {
-        return padType;
-    }
-
     public void move() {
         setX(getX()+padDir);
         if (getType() != 1 && getX() > 496)
@@ -36,6 +32,10 @@ public class Paddle extends GameObject implements ICollidable {
             padDir = 0;
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
             padDir = 0;
+    }
+
+    public int getType() {
+        return padType;
     }
 
     private void setType(Paddle paddle) {

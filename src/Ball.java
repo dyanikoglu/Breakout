@@ -6,4 +6,9 @@ public class Ball extends GameObject {
         setWidth(16);
         setHeight(16);
     }
+
+    public void move() {
+        Point.checkCollision(this);
+        Point.checkVelDir(this);
+    }
 }
