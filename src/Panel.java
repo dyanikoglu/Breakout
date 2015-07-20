@@ -20,13 +20,27 @@ public class Panel extends JPanel{
 
     private void initTimer() {
         timer = new Timer();
-        timer.scheduleAtFixedRate(new loop(), 1000, 8);
+        timer.scheduleAtFixedRate(new Loop(), 1000, 8);
     }
 
     private void initObjects() {
         paddle = new NormalPaddle(240,470);
-        ball = new Ball(200,300);
+        ball = new Ball(210,300);
         BrickLoader.create();
+    }
+
+    private void controlGame() {
+        for(int i=0;i<110;i++) {
+            if (!BrickLoader.brickArr[i].getStatus() && BrickLoader.brickArr[i].getType()!=4) {
+                isGameOver=false;
+                break;
+            }
+            isGameOver=true;
+        }
+
+        if (ball.getY() > 480) {
+            Panel.isGameOver = true;
+        }
     }
 
     public void paint(Graphics g) {
@@ -54,11 +68,12 @@ public class Panel extends JPanel{
         }
     }
 
-    private class loop extends TimerTask {
+    private class Loop extends TimerTask {
         public void run() {
             if(!isGameOver) {
                 repaint();
                 Point.checkCollision(ball);
+                controlGame();
                 paddle.move();
             }
             else {
