@@ -138,27 +138,6 @@ public class Brick extends GameObject implements ICollidable {
                 }
             }
         }
-
-        if(Point.dirX==1) {
-            if(Point.dirY==1) {
-                ball.setX(ball.getX() + Point.dirX + Math.abs(Point.velX));
-                ball.setY(ball.getY() + Point.dirY + Math.abs(Point.velY));
-            }
-            else {
-                ball.setX(ball.getX() + Point.dirX + Math.abs(Point.velX));
-                ball.setY(ball.getY() + Point.dirY - Math.abs(Point.velY));
-            }
-        }
-        else if(Point.dirX==-1) {
-            if(Point.dirY==1) {
-                ball.setX(ball.getX() + Point.dirX - Math.abs(Point.velX));
-                ball.setY(ball.getY() + Point.dirY + Math.abs(Point.velY));
-            }
-            else {
-                ball.setX(ball.getX() + Point.dirX - Math.abs(Point.velX));
-                ball.setY(ball.getY() + Point.dirY - Math.abs(Point.velY));
-            }
-        }
     }
 
     public boolean colDetect(Ball ball) {
