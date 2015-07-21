@@ -51,10 +51,10 @@ public class Brick extends GameObject implements ICollidable {
         for(int i=0;i<110;i++) {
             if (!BrickLoader.brickArr[i].getStatus() && BrickLoader.brickArr[i].colDetect(ball)) {
 
-                java.awt.Point pR = new java.awt.Point(ball.getX() + ball.getWidth() + 1, ball.getY());
-                java.awt.Point pL = new java.awt.Point(ball.getX() - 1, ball.getY());
-                java.awt.Point pT = new java.awt.Point(ball.getX() + 8, ball.getY() - 1);
-                java.awt.Point pB = new java.awt.Point(ball.getX() + 8, ball.getY() + ball.getHeight() + 1);
+                java.awt.Point pR = new java.awt.Point(ball.getX() + ball.getWidth() + 1, ball.getY() + ball.getHeight()/2);
+                java.awt.Point pL = new java.awt.Point(ball.getX() - 1, ball.getY() + ball.getHeight()/2);
+                java.awt.Point pT = new java.awt.Point(ball.getX() + ball.getHeight()/2, ball.getY() - 1);
+                java.awt.Point pB = new java.awt.Point(ball.getX() + ball.getHeight()/2, ball.getY() + ball.getHeight() + 1);
 
                 if (BrickLoader.brickArr[i].getType()!=4 ) {
                     if (BrickLoader.brickArr[i].getRect().contains(pR) && BrickLoader.brickArr[i].getType()!=3) {
