@@ -51,8 +51,8 @@ public class Brick extends GameObject implements ICollidable {
         for(int i=0;i<110;i++) {
             if (!BrickLoader.brickArr[i].getStatus() && BrickLoader.brickArr[i].colDetect(ball)) {
 
-                java.awt.Point pR = new java.awt.Point(ball.getX() + ball.getWidth() + 1, ball.getY() + ball.getHeight()/2);
-                java.awt.Point pL = new java.awt.Point(ball.getX() - 1, ball.getY() + ball.getHeight()/2);
+                java.awt.Point pR = new java.awt.Point(ball.getX() + ball.getWidth() + 1, ball.getY());
+                java.awt.Point pL = new java.awt.Point(ball.getX() - 1, ball.getY());
                 java.awt.Point pT = new java.awt.Point(ball.getX() + ball.getHeight()/2, ball.getY() - 1);
                 java.awt.Point pB = new java.awt.Point(ball.getX() + ball.getHeight()/2, ball.getY() + ball.getHeight() + 1);
 
@@ -78,16 +78,13 @@ public class Brick extends GameObject implements ICollidable {
 
                     if (BrickLoader.brickArr[i].getType() != 4) {
                         BrickLoader.brickArr[i].setStatus(true);
+                        break;
                     }
-
-                    break;
                 }
 
                 else if(BrickLoader.brickArr[i].getType()==4) {
                     if (BrickLoader.brickArr[i].getRect().contains(pR) && BrickLoader.brickArr[i].getY()!=0) {
-                        Random ran = new Random();
-                        int n = ran.nextInt(2);
-                        if(n==1) {
+                        if(new Random().nextInt(2) == 1) {
                             Point.dirX = -1;
                             Point.dirY = -1;
                         }
@@ -98,9 +95,7 @@ public class Brick extends GameObject implements ICollidable {
                     }
 
                     else if (BrickLoader.brickArr[i].getRect().contains(pL) && BrickLoader.brickArr[i].getY()!=0) {
-                        Random ran = new Random();
-                        int n = ran.nextInt(2);
-                        if(n==1) {
+                        if(new Random().nextInt(2)==1) {
                             Point.dirX = 1;
                             Point.dirY=-1;
                         }
@@ -112,9 +107,7 @@ public class Brick extends GameObject implements ICollidable {
 
                     if (BrickLoader.brickArr[i].getRect().contains(pT) && BrickLoader.brickArr[i].getY()==0) {
                         Point.dirY=1;
-                        Random ran = new Random();
-                        int n = ran.nextInt(2);
-                        if(n==1) {
+                        if(new Random().nextInt(2) == 1) {
                             Point.dirX = 1;
                         }
                         else {
@@ -124,16 +117,13 @@ public class Brick extends GameObject implements ICollidable {
                     }
                     else if (BrickLoader.brickArr[i].getRect().contains(pB) && BrickLoader.brickArr[i].getY()==0) {
                         Point.dirY=-1;
-                        Random ran = new Random();
-                        int n = ran.nextInt(2);
-                        if(n==1) {
+                        if(new Random().nextInt(2) == 1) {
                             Point.dirX = 1;
                         }
                         else {
                             Point.dirX=-1;
                         }
                     }
-
                     break;
                 }
             }
