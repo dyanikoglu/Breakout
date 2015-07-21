@@ -1,4 +1,4 @@
-import java.awt.event.KeyEvent;import java.lang.Math;
+ import java.awt.event.KeyEvent;import java.lang.Math;
 
 public class Paddle extends GameObject implements ICollidable {
 
@@ -12,11 +12,11 @@ public class Paddle extends GameObject implements ICollidable {
 
     public void move() {
         setX(getX()+padDir);
-        if (getType() != 1 && getX() > 496)
+        if (getType() != 1 && getX() >= 496)
             setX(496);
-        else if (getType() == 1 && getX() > 432)
+        else if (getType() == 1 && getX() >= 432)
             setX(432);
-        if (getX() < 0)
+        if (getX() <= 0)
             setX(0);
     }
 
@@ -66,7 +66,7 @@ public class Paddle extends GameObject implements ICollidable {
     }
 
     public boolean colDetect(Ball ball) {
-        return (Point.dirY > 0 && ball.getY() > 455 && ball.getX() < getX() + getWidth() && ball.getX() > getX());
+        return (Point.dirY > 0 && ball.getRect().intersects(this.getRect()));
     }
 
     public void colResponse(Ball ball) {
