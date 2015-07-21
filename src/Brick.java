@@ -48,87 +48,68 @@ public class Brick extends GameObject implements ICollidable {
     }
 
     public void colResponse(Ball ball) {
-        for(int i=0;i<110;i++) {
-            if (!BrickLoader.brickArr[i].getStatus() && BrickLoader.brickArr[i].colDetect(ball)) {
 
-                java.awt.Point pR = new java.awt.Point(ball.getX() + ball.getWidth() + 1, ball.getY());
-                java.awt.Point pL = new java.awt.Point(ball.getX() - 1, ball.getY());
-                java.awt.Point pT = new java.awt.Point(ball.getX() + ball.getHeight()/2, ball.getY() - 1);
-                java.awt.Point pB = new java.awt.Point(ball.getX() + ball.getHeight()/2, ball.getY() + ball.getHeight() + 1);
+        java.awt.Point pR = new java.awt.Point(ball.getX() + ball.getWidth() + 1, ball.getY());
+        java.awt.Point pL = new java.awt.Point(ball.getX() - 1, ball.getY());
+        java.awt.Point pT = new java.awt.Point(ball.getX() + ball.getHeight() / 2, ball.getY() - 1);
+        java.awt.Point pB = new java.awt.Point(ball.getX() + ball.getHeight() / 2, ball.getY() + ball.getHeight() + 1);
 
-                if (BrickLoader.brickArr[i].getType()!=4 ) {
-                    if (BrickLoader.brickArr[i].getRect().contains(pR) && BrickLoader.brickArr[i].getType()!=3) {
-                        Point.dirX=-1;
-                    }
+        if (this.getType() != 4) {
+            if (this.getRect().contains(pR) && this.getType() != 3) {
+                Point.dirX = -1;
+            } else if (this.getRect().contains(pL) && this.getType() != 3) {
+                Point.dirX = 1;
+            }
 
-                    else if (BrickLoader.brickArr[i].getRect().contains(pL) && BrickLoader.brickArr[i].getType()!=3) {
-                        Point.dirX=1;
-                    }
+            if (this.getRect().contains(pT) && this.getType() != 3) {
+                Point.dirY = 1;
+            } else if (this.getRect().contains(pB) && this.getType() != 3) {
+                Point.dirY = -1;
+            } else if (this.getType() != 3) { // fix for collision of corner of ball
+                Point.dirY = -Point.dirY;
+            }
 
-                    if (BrickLoader.brickArr[i].getRect().contains(pT) && BrickLoader.brickArr[i].getType()!=3) {
-                        Point.dirY=1;
-                    }
-                    else if (BrickLoader.brickArr[i].getRect().contains(pB) && BrickLoader.brickArr[i].getType()!=3) {
-                        Point.dirY=-1;
-                    }
+            if (this.getType() != 4) {
+                this.setStatus(true);
+            }
+        } else if (this.getType() == 4) {
+            if (this.getRect().contains(pR) && this.getY() != 0) {
+                if (new Random().nextInt(2) == 1) {
+                    Point.dirX = -1;
+                    Point.dirY = -1;
+                } else {
+                    Point.dirX = -1;
+                    Point.dirY = 1;
+                }
+            } else if (this.getRect().contains(pL) && this.getY() != 0) {
+                if (new Random().nextInt(2) == 1) {
+                    Point.dirX = 1;
+                    Point.dirY = -1;
+                } else {
+                    Point.dirX = 1;
+                    Point.dirY = 1;
+                }
+            }
 
-                    else if(BrickLoader.brickArr[i].getType()!=3) { // fix for collision of corner of ball
-                        Point.dirY=-Point.dirY;
-                    }
-
-                    if (BrickLoader.brickArr[i].getType() != 4) {
-                        BrickLoader.brickArr[i].setStatus(true);
-                        break;
-                    }
+            if (this.getRect().contains(pT) && this.getY() == 0) {
+                Point.dirY = 1;
+                if (new Random().nextInt(2) == 1) {
+                    Point.dirX = 1;
+                } else {
+                    Point.dirX = -1;
                 }
 
-                else if(BrickLoader.brickArr[i].getType()==4) {
-                    if (BrickLoader.brickArr[i].getRect().contains(pR) && BrickLoader.brickArr[i].getY()!=0) {
-                        if(new Random().nextInt(2) == 1) {
-                            Point.dirX = -1;
-                            Point.dirY = -1;
-                        }
-                        else {
-                            Point.dirX=-1;
-                            Point.dirY=1;
-                        }
-                    }
-
-                    else if (BrickLoader.brickArr[i].getRect().contains(pL) && BrickLoader.brickArr[i].getY()!=0) {
-                        if(new Random().nextInt(2)==1) {
-                            Point.dirX = 1;
-                            Point.dirY=-1;
-                        }
-                        else {
-                            Point.dirX=1;
-                            Point.dirY=1;
-                        }
-                    }
-
-                    if (BrickLoader.brickArr[i].getRect().contains(pT) && BrickLoader.brickArr[i].getY()==0) {
-                        Point.dirY=1;
-                        if(new Random().nextInt(2) == 1) {
-                            Point.dirX = 1;
-                        }
-                        else {
-                            Point.dirX=-1;
-                        }
-
-                    }
-                    else if (BrickLoader.brickArr[i].getRect().contains(pB) && BrickLoader.brickArr[i].getY()==0) {
-                        Point.dirY=-1;
-                        if(new Random().nextInt(2) == 1) {
-                            Point.dirX = 1;
-                        }
-                        else {
-                            Point.dirX=-1;
-                        }
-                    }
-                    break;
+            } else if (this.getRect().contains(pB) && this.getY() == 0) {
+                Point.dirY = -1;
+                if (new Random().nextInt(2) == 1) {
+                    Point.dirX = 1;
+                } else {
+                    Point.dirX = -1;
                 }
             }
         }
     }
+
 
     public boolean colDetect(Ball ball) {
         return (ball.getRect().intersects(this.getRect()));

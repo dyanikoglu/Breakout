@@ -72,8 +72,9 @@ public class Panel extends JPanel{
         public void run() {
             if(!isGameOver) {
                 repaint();
-                ball.move();
-                paddle.move();
+                ball.col();
+                paddle.col(ball);
+                Point.checkVelDir(ball);
                 controlGame();
             }
             else {
