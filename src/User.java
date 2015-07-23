@@ -1,6 +1,6 @@
 public class User {
     static int score = 0;
-    static String name = "Doga Can";
+    final static String name = "Doga Can";
 
     public static void calcScore(int brickType) {
         switch (brickType) {

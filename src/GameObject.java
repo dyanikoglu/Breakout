@@ -3,16 +3,8 @@ import java.awt.*;
 
 public class GameObject {
     private int x,y,width,height;
-    public Image img;
-
-    public void setIcon(String imageLoc) {
-        ImageIcon imgIcon = new ImageIcon(this.getClass().getResource(imageLoc));
-        img = imgIcon.getImage();
-    }
-
-    public void paint(Graphics g) {
-    }
-
+    private Image img;
+    
     public int getX() {
         return x;
     }
@@ -43,6 +35,11 @@ public class GameObject {
 
     public int getHeight() {
         return height;
+    }
+
+    public void setIcon(String imageLoc) {
+        ImageIcon imgIcon = new ImageIcon(GameObject.class.getResource(imageLoc));
+        img = imgIcon.getImage();
     }
 
     public Image getImage() {

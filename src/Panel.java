@@ -9,8 +9,8 @@ public class Panel extends JPanel{
     static Paddle paddle;
     private Ball ball;
     private Timer timer;
-    private String wonMsg = "Congratulations";
-    private String lostMsg = "Game Over";
+    private Display gameInfo;
+    private String wonMsg = "Congratulations",lostMsg = "Game Over";
 
 /**
     * endGame 0 : Game Continues
@@ -32,6 +32,7 @@ public class Panel extends JPanel{
     }
 
     private void initObjects() {
+        gameInfo = new Display();
         paddle = new NormalPaddle(240,470);
         ball = new Ball(200,300);
         BrickLoader.create();
@@ -62,19 +63,19 @@ public class Panel extends JPanel{
             }
         }
 
-        Display.read(User.name, g,40,430);
-        Display.read(User.score, g, 550,430);
+        gameInfo.read(User.name, g,40,430);
+        gameInfo.read(User.score, g, 543,430);
 
         if(endGame == 1) {
             g.clearRect(0, 0, getWidth(), getHeight());
-            Display.read(lostMsg, g, 250, 250);
-            Display.read("Your Score is " + User.score,g,198,280);
+            gameInfo.read(lostMsg, g, 250, 250);
+            gameInfo.read("Your Score is " + User.score,g,198,280);
         }
 
         else if(endGame == 2) {
             g.clearRect (0, 0, getWidth(), getHeight());
-            Display.read(wonMsg, g, 190, 250);
-            Display.read("Your Score is " + User.score,g,182,280);
+            gameInfo.read(wonMsg, g, 190, 250);
+            gameInfo.read("Your Score is " + User.score,g,178,280);
         }
     }
 
