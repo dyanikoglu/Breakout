@@ -9,7 +9,15 @@ public class Panel extends JPanel{
     static Paddle paddle;
     private Ball ball;
     private Timer timer;
-    public static boolean isGameOver = false;
+    private String wonMsg = "Congratulations";
+    private String lostMsg = "Game Over";
+
+/**
+    * endGame 0 : Game Continues
+    * endGame 1 : Game Lost
+    * endGame 2 : Game Won
+*/
+    public static int endGame = 0;
 
     public Panel() {
         setFocusable(true);
@@ -29,17 +37,17 @@ public class Panel extends JPanel{
         BrickLoader.create();
     }
 
-    private void controlGame() {
+    private void controlEndGame() {
         for(int i=0;i<110;i++) {
             if (!BrickLoader.brickArr[i].getStatus() && BrickLoader.brickArr[i].getType()!=4) {
-                isGameOver=false;
+                endGame=0;
                 break;
             }
-            isGameOver=true;
+            endGame=2;
         }
 
         if (ball.getY() > 480) {
-            Panel.isGameOver = true;
+            Panel.endGame = 1;
         }
     }
 
@@ -54,8 +62,19 @@ public class Panel extends JPanel{
             }
         }
 
-        if(isGameOver) {
+        Display.read(User.name, g,40,430);
+        Display.read(User.score, g, 550,430);
+
+        if(endGame == 1) {
+            g.clearRect(0, 0, getWidth(), getHeight());
+            Display.read(lostMsg, g, 250, 250);
+            Display.read("Your Score is " + User.score,g,198,280);
+        }
+
+        else if(endGame == 2) {
             g.clearRect (0, 0, getWidth(), getHeight());
+            Display.read(wonMsg, g, 190, 250);
+            Display.read("Your Score is " + User.score,g,182,280);
         }
     }
 
@@ -70,12 +89,12 @@ public class Panel extends JPanel{
 
     private class Loop extends TimerTask {
         public void run() {
-            if(!isGameOver) {
+            if(endGame == 0) {
                 repaint();
-                ball.col();
-                paddle.col(ball);
+                ball.checkCol();
+                paddle.checkCol(ball);
                 Point.checkVelDir(ball);
-                controlGame();
+                controlEndGame();
             }
             else {
                 repaint();

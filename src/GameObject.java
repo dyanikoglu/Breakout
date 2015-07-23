@@ -3,11 +3,14 @@ import java.awt.*;
 
 public class GameObject {
     private int x,y,width,height;
-    private Image img;
+    public Image img;
 
     public void setIcon(String imageLoc) {
         ImageIcon imgIcon = new ImageIcon(this.getClass().getResource(imageLoc));
         img = imgIcon.getImage();
+    }
+
+    public void paint(Graphics g) {
     }
 
     public int getX() {

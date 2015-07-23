@@ -10,10 +10,10 @@ public class Paddle extends GameObject implements ICollidable {
     private int padType;
     private int padDir;
 
-    public void col(Ball ball) {
+    public void checkCol(Ball ball) {
         this.colResponse(ball);
 
-        setX(getX()+padDir);
+        setX(getX() + padDir);
         if (getType() != 1 && getX() >= 496)
             setX(496);
         else if (getType() == 1 && getX() >= 432)
