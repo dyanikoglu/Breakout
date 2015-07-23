@@ -12,11 +12,11 @@ public class Panel extends JPanel{
     private Display gameInfo;
     private String wonMsg = "Congratulations",lostMsg = "Game Over";
 
-/**
-    * endGame 0 : Game Continues
-    * endGame 1 : Game Lost
-    * endGame 2 : Game Won
-*/
+    /**
+     * endGame 0 : Game Continues
+     * endGame 1 : Game Lost
+     * endGame 2 : Game Won
+     */
     public static int endGame = 0;
 
     public Panel() {
@@ -69,7 +69,7 @@ public class Panel extends JPanel{
         if(endGame == 1) {
             g.clearRect(0, 0, getWidth(), getHeight());
             gameInfo.read(lostMsg, g, 250, 250);
-            gameInfo.read("Your Score is " + User.score,g,198,280);
+            gameInfo.read("Your Score is " + User.score,g,197,280);
         }
 
         else if(endGame == 2) {

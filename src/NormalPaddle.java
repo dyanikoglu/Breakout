@@ -1,11 +1,11 @@
 public class NormalPaddle extends Paddle {
 
     public NormalPaddle(int x, int y) {
-        this.setIcon("image/paddle.png");
-        this.setX(x);
-        this.setY(y);
-        this.setWidth(128);
-        this.setHeight(24);
+        setIcon("image/paddle.png");
+        setX(x);
+        setY(y);
+        setWidth(128);
+        setHeight(24);
     }
 
     public static void set(Paddle paddle) {

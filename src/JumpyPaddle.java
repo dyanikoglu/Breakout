@@ -1,8 +1,8 @@
 public class JumpyPaddle extends Paddle {
     public JumpyPaddle() {
-        this.setIcon("image/paddle_jumpy.png");
-        this.setWidth(128);
-        this.setHeight(24);
+        setIcon("image/paddle_jumpy.png");
+        setWidth(128);
+        setHeight(24);
     }
 
     public static void set(Paddle paddle) {

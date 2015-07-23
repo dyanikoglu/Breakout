@@ -13,13 +13,13 @@ public class Paddle extends GameObject implements ICollidable {
     public void checkCol(Ball ball) {
         this.colResponse(ball);
 
-        this.setX(this.getX() + padDir);
-        if (this.getType() != 1 && this.getX() >= 496)
-            this.setX(496);
-        else if (this.getType() == 1 && this.getX() >= 432)
-            this.setX(432);
+        setX(getX() + padDir);
+        if (getType() != 1 && getX() >= 496)
+            setX(496);
+        else if (getType() == 1 && getX() >= 432)
+            setX(432);
         if (getX() <= 0)
-            this.setX(0);
+            setX(0);
     }
 
     public void keyPressed(KeyEvent e) {

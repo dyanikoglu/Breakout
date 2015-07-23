@@ -1,9 +1,9 @@
 public class LargePaddle extends Paddle {
 
     public LargePaddle() {
-        this.setIcon("image/paddle_long.png");
-        this.setWidth(192);
-        this.setHeight(24);
+        setIcon("image/paddle_long.png");
+        setWidth(192);
+        setHeight(24);
     }
 
     public static void set(Paddle paddle) {
