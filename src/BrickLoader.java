@@ -30,7 +30,9 @@ public class BrickLoader {
 
     private static void read() {
         int i=0;
-        File f = new File(PATH+"\\txt\\bricks.txt"); // EDIT
+        String file = PATH+"\\txt\\bricks.txt";
+        file = file.replaceAll("%20"," ");
+        File f = new File(file);
         try {
             Scanner scan = new Scanner(f);
 
