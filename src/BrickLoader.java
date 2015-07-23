@@ -32,7 +32,7 @@ public class BrickLoader {
 
     private static void read() {
         int i=0;
-        File f = new File(workingDirectory.toString()+"\\src\\txt\\bricks.txt");
+        File f = new File(workingDirectory.toString()+"\\src\\txt\\bricks.txt"); // EDIT
         try {
             Scanner scan = new Scanner(f);
 
