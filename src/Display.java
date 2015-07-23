@@ -13,14 +13,6 @@ public class Display extends GameObject {
         }
     }
 
-    private void draw(String letter,Graphics g,int i) {
-        if(letter.equalsIgnoreCase(" ")) {
-            return;
-        }
-        setIcon("image/"+letter+".png");
-        g.drawImage(this.getImage(), this.getX() + i*16, this.getY(), 12, 16, null);
-    }
-
     public void read(int score,Graphics g, int x, int y) {
         this.setX(x);
         this.setY(y);
@@ -28,5 +20,13 @@ public class Display extends GameObject {
         for(int i=0;i<sSplitArr.length;i++) {
             draw(sSplitArr[i], g, i);
         }
+    }
+
+    private void draw(String letter,Graphics g,int i) {
+        if(letter.equalsIgnoreCase(" ")) {
+            return;
+        }
+        setIcon("image/" + letter + ".png");
+        g.drawImage(this.getImage(), this.getX() + i*16, this.getY(), 12, 16, null);
     }
 }

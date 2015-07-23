@@ -2,9 +2,9 @@ public class BorderBrick extends Brick {
 
     public BorderBrick(int x,int y) {
         super(x,y);
-        setIcon("image/borderbrick.png");
-        setWidth(24);
-        setHeight(24);
-        setType(4);
+        this.setIcon("image/borderbrick.png");
+        this.setWidth(24);
+        this.setHeight(24);
+        this.setType(4);
     }
 }

@@ -14,15 +14,15 @@ public class Brick extends GameObject implements ICollidable {
     private boolean status;
 
     public Brick() {
-        setX(0);
-        setY(0);
-        status = false;
+        this.setX(0);
+        this.setY(0);
+        this.status = false;
     }
 
     public Brick(int x, int y) {
-        setX(x);
-        setY(y);
-        status = false;
+        this.setX(x);
+        this.setY(y);
+        this.status = false;
     }
 
     public void setType(int type) {

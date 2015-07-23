@@ -2,9 +2,9 @@ public class NormalBrick extends Brick {
 
     public NormalBrick(int x, int y) {
         super(x,y);
-        setHeight(24);
-        setWidth(72);
-        setIcon("image/brick_normal.png");
-        setType(0);
+        this.setHeight(24);
+        this.setWidth(72);
+        this.setIcon("image/brick_normal.png");
+        this.setType(0);
     }
 }

@@ -1,10 +1,10 @@
 public class Ball extends GameObject {
     public Ball(int x,int y) {
-        setIcon("image/ball.png");
-        setX(x);
-        setY(y);
-        setWidth(16);
-        setHeight(16);
+        this.setIcon("image/ball.png");
+        this.setX(x);
+        this.setY(y);
+        this.setWidth(16);
+        this.setHeight(16);
     }
 
     public void checkCol() {
