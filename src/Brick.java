@@ -37,7 +37,7 @@ public class Brick extends GameObject implements ICollidable {
         return this.status;
     }
 
-    private void setStatus(boolean status) {
+    public void setStatus(boolean status) {
         if(this.getType() == 1) {
             this.setIcon("image/brick_stone_2.png");
             this.setType(5);

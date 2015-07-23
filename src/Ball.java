@@ -7,7 +7,7 @@ public class Ball extends GameObject {
         this.setHeight(16);
     }
 
-    public void checkCol() {
+    public void move() {
         for(int i=0;i<110;i++) {
             if (!BrickLoader.brickArr[i].getStatus() && BrickLoader.brickArr[i].colDetect(this)) {
                 BrickLoader.brickArr[i].colResponse(this);

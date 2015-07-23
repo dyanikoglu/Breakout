@@ -5,11 +5,6 @@ public class GameObject {
     private int x,y,width,height;
     private Image img;
 
-    public void setIcon(String imageLoc) {
-        ImageIcon imgIcon = new ImageIcon(GameObject.class.getResource(imageLoc));
-        img = imgIcon.getImage();
-    }
-
     public int getX() {
         return x;
     }
@@ -44,6 +39,11 @@ public class GameObject {
 
     public Image getImage() {
         return img;
+    }
+
+    public void setIcon(String imageLoc) {
+        ImageIcon imgIcon = new ImageIcon(GameObject.class.getResource(imageLoc));
+        img = imgIcon.getImage();
     }
 
     public Rectangle getRect() {

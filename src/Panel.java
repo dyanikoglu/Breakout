@@ -7,6 +7,7 @@ import java.util.Timer;
 
 public class Panel extends JPanel{
     static Paddle paddle;
+    private Point velocity;
     private Ball ball;
     private Timer timer;
     private Display gameInfo;
@@ -21,7 +22,7 @@ public class Panel extends JPanel{
 
     public Panel() {
         setFocusable(true);
-        initObjects();
+        initGame();
         initTimer();
         addKeyListener(new Listener());
     }
@@ -31,7 +32,8 @@ public class Panel extends JPanel{
         timer.scheduleAtFixedRate(new Loop(), 1000, 8);
     }
 
-    private void initObjects() {
+    private void initGame() {
+        velocity = new Point();
         gameInfo = new Display();
         paddle = new NormalPaddle(240,470);
         ball = new Ball(200,300);
@@ -92,9 +94,9 @@ public class Panel extends JPanel{
         public void run() {
             if(endGame == 0) {
                 repaint();
-                ball.checkCol();
-                paddle.checkCol(ball);
-                Point.checkVelDir(ball);
+                ball.move();
+                paddle.move(ball);
+                velocity.control(ball);
                 controlEndGame();
             }
             else {
