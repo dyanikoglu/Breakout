@@ -123,7 +123,6 @@ public class Brick extends GameObject implements ICollidable {
         }
     }
 
-
     public boolean colDetect(Ball ball) {
         return (ball.getRect().intersects(this.getRect()));
     }

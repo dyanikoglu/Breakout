@@ -13,27 +13,27 @@ public class Paddle extends GameObject implements ICollidable {
     public void move(Ball ball) {
         this.colResponse(ball);
 
-        setX(getX() + padDir);
-        if (getType() != 1 && getX() >= 496)
-            setX(496);
-        else if (getType() == 1 && getX() >= 432)
-            setX(432);
-        if (getX() <= 0)
-            setX(0);
+        this.setX(this.getX() + this.padDir);
+        if (this.getType() != 1 && this.getX() >= 496)
+            this.setX(496);
+        else if (this.getType() == 1 && this.getX() >= 432)
+            this.setX(432);
+        if (this.getX() <= 0)
+            this.setX(0);
     }
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            padDir = -5;
+            this.padDir = -5;
         if (e.getKeyCode()  == KeyEvent.VK_RIGHT)
-            padDir = 5;
+            this.padDir = 5;
     }
 
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            padDir = 0;
+            this.padDir = 0;
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            padDir = 0;
+            this.padDir = 0;
     }
 
     public int getType() {

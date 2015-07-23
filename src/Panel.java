@@ -11,7 +11,7 @@ public class Panel extends JPanel{
     private Ball ball;
     private Timer timer;
     private Display gameInfo;
-    private String wonMsg = "Congratulations",lostMsg = "Game Over";
+    private String wonMsg = "Congratulations", lostMsg = "Game Over";
 
     /**
      * endGame 0 : Game Continues
@@ -40,7 +40,7 @@ public class Panel extends JPanel{
         BrickLoader.create();
     }
 
-    private void controlEndGame() {
+    private void checkEndGame() {
         for(int i=0;i<110;i++) {
             if (!BrickLoader.brickArr[i].getStatus() && BrickLoader.brickArr[i].getType()!=4) {
                 endGame=0;
@@ -94,10 +94,10 @@ public class Panel extends JPanel{
         public void run() {
             if(endGame == 0) {
                 repaint();
-                ball.move();
+                ball.movement();
                 paddle.move(ball);
                 velocity.control(ball);
-                controlEndGame();
+                checkEndGame();
             }
             else {
                 repaint();
