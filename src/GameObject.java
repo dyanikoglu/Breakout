@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-
 public class GameObject {
     private int x,y,width,height;
     private Image img;

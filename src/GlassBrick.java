@@ -1,5 +1,4 @@
 public class GlassBrick extends Brick {
-
     public GlassBrick(int x, int y) {
         super(x, y);
         this.setHeight(24);

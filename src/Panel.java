@@ -4,9 +4,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.*;
 import java.util.Timer;
-
 public class Panel extends JPanel{
-    static Paddle paddle;
+    protected static Paddle paddle;
     private Point velocity;
     private Ball ball;
     private Timer timer;
@@ -18,7 +17,7 @@ public class Panel extends JPanel{
      * endGame 1 : Game Lost
      * endGame 2 : Game Won
      */
-    public static int endGame = 0;
+    private int endGame = 0;
 
     public Panel() {
         setFocusable(true);
@@ -37,7 +36,7 @@ public class Panel extends JPanel{
         gameInfo = new Display();
         paddle = new NormalPaddle(240,470);
         ball = new Ball(200,300);
-        BrickLoader.create();
+        BrickLoader.createBricks();
     }
 
     private void checkEndGame() {
@@ -50,10 +49,11 @@ public class Panel extends JPanel{
         }
 
         if (ball.getY() > 480) {
-            Panel.endGame = 1;
+            endGame = 1;
         }
     }
 
+    @Override
     public void paint(Graphics g) {
         super.paint(g);
         g.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight(), null);
@@ -77,14 +77,16 @@ public class Panel extends JPanel{
         else if(endGame == 2) {
             g.clearRect (0, 0, getWidth(), getHeight());
             gameInfo.read(wonMsg, g, 190, 250);
-            gameInfo.read("Your Score is " + User.score,g,178,280);
+            gameInfo.read("Your Score is " + User.score,g,176,280);
         }
     }
 
     private class Listener extends KeyAdapter {
+        @Override
         public void keyReleased(KeyEvent e) {
             paddle.keyReleased(e);
         }
+        @Override
         public void keyPressed(KeyEvent e) {
             paddle.keyPressed(e);
         }

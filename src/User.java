@@ -4,12 +4,12 @@ public class User {
 
     public static void calcScore(int brickType) {
         switch (brickType) {
-            case 0: score = score + 5; break;
-            case 1: score = score + 5; break;
-            case 2: score = score + 10; break;
-            case 3: score = score + 5; break;
+            case 0: score += 5; break;
+            case 1: score += 5; break;
+            case 2: score += 10; break;
+            case 3: score += 5; break;
             case 4: break;
-            case 5: score = score + 5; break;
+            case 5: score += 5; break;
         }
     }
 }

@@ -1,7 +1,6 @@
- import java.awt.event.KeyEvent;import java.lang.Math;
-
+ import java.awt.event.KeyEvent;
+ import java.lang.Math;
 public class Paddle extends GameObject implements ICollidable {
-
 /**
     * padType 0 : NormalPaddle
     * padType 1 : LargePaddle
@@ -10,7 +9,7 @@ public class Paddle extends GameObject implements ICollidable {
     private int padType;
     private int padDir;
 
-    public void move(Ball ball) {
+    public void move(Ball ball) { // moves paddle and checks collision with ball
         this.colResponse(ball);
 
         this.setX(this.getX() + this.padDir);
@@ -41,7 +40,7 @@ public class Paddle extends GameObject implements ICollidable {
     }
 
     private void setType(Paddle paddle) {
-        if (Math.random() < 0.1 && paddle.getType() != 2) {
+        if (Math.random() < 0.1 && paddle.getType() != 2) { // %10 chance
             if (Math.random() < 0.5) {
                 paddle.padType = 1;
             }

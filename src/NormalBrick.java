@@ -1,5 +1,4 @@
 public class NormalBrick extends Brick {
-
     public NormalBrick(int x, int y) {
         super(x,y);
         this.setHeight(24);

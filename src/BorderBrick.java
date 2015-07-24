@@ -1,5 +1,4 @@
 public class BorderBrick extends Brick {
-
     public BorderBrick(int x,int y) {
         super(x,y);
         this.setIcon("image/borderbrick.png");

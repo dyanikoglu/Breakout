@@ -1,5 +1,4 @@
 import java.awt.*;
-
 public class Display extends GameObject {
     private String[] uSplitArr;
     private String[] sSplitArr;
@@ -9,7 +8,7 @@ public class Display extends GameObject {
         this.setY(y);
         uSplitArr = str.split("");
         for(int i=0;i<uSplitArr.length;i++) {
-            draw(uSplitArr[i], g, i);
+            drawToPanel(uSplitArr[i], g, i);
         }
     }
 
@@ -18,11 +17,11 @@ public class Display extends GameObject {
         this.setY(y);
         sSplitArr = Integer.toString(score).split("");
         for(int i=0;i<sSplitArr.length;i++) {
-            draw(sSplitArr[i], g, i);
+            drawToPanel(sSplitArr[i], g, i);
         }
     }
 
-    private void draw(String letter,Graphics g,int i) {
+    private void drawToPanel(String letter,Graphics g,int i) {
         if(letter.equalsIgnoreCase(" ")) {
             return;
         }

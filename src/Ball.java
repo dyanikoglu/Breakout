@@ -8,7 +8,7 @@ public class Ball extends GameObject {
     }
 
     public void movement() {
-        for(int i=0;i<110;i++) {
+        for(int i=0;i<110;i++) { // checks collision of ball with bricks
             if (!BrickLoader.brickArr[i].getStatus() && BrickLoader.brickArr[i].colDetect(this)) {
                 BrickLoader.brickArr[i].colResponse(this);
                 break;

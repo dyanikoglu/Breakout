@@ -1,5 +1,4 @@
 public class GemBrick extends Brick{
-
     public GemBrick(int x, int y) {
         super(x,y);
         this.setHeight(24);

@@ -1,5 +1,4 @@
 public class NormalPaddle extends Paddle {
-
     public NormalPaddle(int x, int y) {
         this.setIcon("image/paddle.png");
         this.setX(x);

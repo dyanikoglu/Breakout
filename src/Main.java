@@ -1,10 +1,9 @@
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
-
 public class Main extends JFrame {
     public Main() {
         add(new Panel());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(630, 520);
         setIgnoreRepaint(true);
         setResizable(false);

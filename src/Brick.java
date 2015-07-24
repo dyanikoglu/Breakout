@@ -1,5 +1,4 @@
 import java.util.Random;
-
 public class Brick extends GameObject implements ICollidable {
 
 /**
@@ -38,7 +37,7 @@ public class Brick extends GameObject implements ICollidable {
     }
 
     public void setStatus(boolean status) {
-        if(this.getType() == 1) {
+        if(this.getType() == 1) { // first
             this.setIcon("image/brick_stone_2.png");
             this.setType(5);
         }
@@ -56,17 +55,17 @@ public class Brick extends GameObject implements ICollidable {
         java.awt.Point pB = new java.awt.Point(ball.getX() + ball.getHeight() / 2, ball.getY() + ball.getHeight() + 1);
 
         if (this.getType() != 4) {
-            if (this.getRect().contains(pR) && this.getType() != 3) {
+            if (this.getRect().contains(pR) && this.getType() != 3) { // right side
                 Point.dirX = -1;
             }
-            else if (this.getRect().contains(pL) && this.getType() != 3) {
+            else if (this.getRect().contains(pL) && this.getType() != 3) { // left side
                 Point.dirX = 1;
             }
 
-            if (this.getRect().contains(pT) && this.getType() != 3) {
+            if (this.getRect().contains(pT) && this.getType() != 3) { // top side
                 Point.dirY = 1;
             }
-            else if (this.getRect().contains(pB) && this.getType() != 3) {
+            else if (this.getRect().contains(pB) && this.getType() != 3) { // bottom side
                 Point.dirY = -1;
             }
 
@@ -79,8 +78,8 @@ public class Brick extends GameObject implements ICollidable {
             }
         }
 
-        else if (this.getType() == 4) {
-            if (this.getRect().contains(pR) && this.getY() != 0) {
+        else { // collision of Border Bricks
+            if (this.getRect().contains(pR) && this.getY() != 0) { // right side
                 if (new Random().nextInt(2) == 1) {
                     Point.dirX = -1;
                     Point.dirY = -1;
@@ -91,18 +90,18 @@ public class Brick extends GameObject implements ICollidable {
                 }
             }
 
-            else if (this.getRect().contains(pL) && this.getY() != 0) {
+            else if (this.getRect().contains(pL) && this.getY() != 0) { // left side
                 if (new Random().nextInt(2) == 1) {
                     Point.dirX = 1;
                     Point.dirY = -1;
                 }
-                else {
+                else { // right
                     Point.dirX = 1;
                     Point.dirY = 1;
                 }
             }
 
-            if (this.getRect().contains(pT) && this.getY() == 0) {
+            if (this.getRect().contains(pT) && this.getY() == 0) { // top side
                 Point.dirY = 1;
                 if (new Random().nextInt(2) == 1) {
                     Point.dirX = 1;
@@ -111,7 +110,7 @@ public class Brick extends GameObject implements ICollidable {
                     Point.dirX = -1;
                 }
 
-            } else if (this.getRect().contains(pB) && this.getY() == 0) {
+            } else if (this.getRect().contains(pB) && this.getY() == 0) { // bottom side
                 Point.dirY = -1;
                 if (new Random().nextInt(2) == 1) {
                     Point.dirX = 1;
