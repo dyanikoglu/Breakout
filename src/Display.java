@@ -27,7 +27,13 @@ public class Display extends GameObject {
         if(letter.equalsIgnoreCase(" ")) {
             return;
         }
-        setIcon("image/" + letter + ".png");
-        g.drawImage(this.getImage(), this.getX() + i*16, this.getY(), 12, 16, null);
+        if(GamePanel.endGame==1) {
+            setIcon("image/" + letter + "2" + ".png");
+            g.drawImage(this.getImage(), this.getX() + i * 16, this.getY(), 12, 16, null);
+        }
+        else {
+            setIcon("image/" + letter + ".png");
+            g.drawImage(this.getImage(), this.getX() + i * 16, this.getY(), 12, 16, null);
+        }
     }
 }

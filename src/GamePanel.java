@@ -18,7 +18,7 @@ public class GamePanel extends JPanel{
      * endGame 1 : Game Lost
      * endGame 2 : Game Won
      */
-    private int endGame = 0;
+    public static int endGame = 0;
 
     public GamePanel() {
         setFocusable(true);
@@ -68,21 +68,25 @@ public class GamePanel extends JPanel{
             }
         }
 
-        gameInfo.read(User.name, g,40,430);
-        gameInfo.read(User.score, g, 543,430);
+        if(endGame == 0) {
+            gameInfo.read(User.name, g, 40, 430);
+            gameInfo.read(User.score, g, 543, 430);
+        }
 
-        if(endGame == 1) {
+        else if(endGame == 1) {
             Sound.clip.stop();
             Sound.play("\\sound\\gameover.wav");
-            g.clearRect(0, 0, getWidth(), getHeight());
+            g.setColor(Color.black);
+            g.fillRect(0,0,getWidth(), getHeight());
             gameInfo.read(lostMsg, g, 250, 250);
             gameInfo.read("Your Score is " + User.score,g,197,280);
         }
 
-        else if(endGame == 2) {
+        else {
             Sound.clip.stop();
             Sound.play("\\sound\\gamewn.wav");
-            g.clearRect (0, 0, getWidth(), getHeight());
+            g.setColor(Color.yellow);
+            g.fillRect(0, 0, getWidth(), getHeight());
             gameInfo.read(wonMsg, g, 190, 250);
             gameInfo.read("Your Score is " + User.score,g,176,280);
         }
@@ -109,6 +113,7 @@ public class GamePanel extends JPanel{
                 checkEndGame();
             }
             else {
+                setBackground(Color.black);
                 repaint();
                 timer.cancel();
             }
