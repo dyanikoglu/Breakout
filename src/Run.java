@@ -5,7 +5,7 @@ public class Run extends JFrame {
         JPanel mainmenu = new MainMenu();
         add(mainmenu);
 
-        setTitle("Breakout");
+        setTitle("8-bit Breakout");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(230, 90);
         setResizable(false);

@@ -1,5 +1,6 @@
 # 8-bit Breakout Game
-BIL211 Project
+
+BIL211 Project, compile and run from Run.java
 
 Credits:
 

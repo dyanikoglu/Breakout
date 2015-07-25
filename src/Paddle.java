@@ -74,7 +74,11 @@ public class Paddle extends GameObject implements ICollidable {
 
     public void colResponse(Ball ball) {
         if (colDetect(ball)) {
-            Sound.play("\\sound\\paddle.wav");
+            if(getType()==2)
+                Sound.play("\\sound\\spdup.wav");
+            else
+                Sound.play("\\sound\\paddle.wav");
+
             Point.dirY = -Point.dirY;
             if (getType() == 2) {
                 Point.velY++;
