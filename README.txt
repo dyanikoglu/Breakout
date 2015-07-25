@@ -1,4 +1,4 @@
-# 8-bit Breakout Game
+# Retro Breakout Game
 
 BIL211 Project, compile and run from Run.java
 
