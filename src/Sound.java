@@ -1,22 +1,20 @@
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class Sound {
     public static Clip clip = null;
 
-    public static void play(String path) {
-        InputStream inputStream = Sound.class.getResourceAsStream(path);
-        AudioStream audioStream = null;
+    public static void play(String filename)
+    {
         try {
-            audioStream = new AudioStream(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(new File( (BrickLoader.class.getProtectionDomain().getCodeSource().getLocation().getPath() + filename).replaceAll("%20"," ") )));
+            clip.start();
         }
-        AudioPlayer.player.start(audioStream);
+        catch (Exception exc) {
+            exc.printStackTrace(System.out);
+        }
     }
 
     public static void music() {
