@@ -11,6 +11,7 @@ public class GamePanel extends JPanel{
     private Timer timer;
     private Display gameInfo;
     private String wonMsg = "Congratulations", lostMsg = "Game Over";
+    private final GameObject background = new GameObject();
 
     /**
      * endGame 0 : Game Continues
@@ -38,6 +39,7 @@ public class GamePanel extends JPanel{
         paddle = new NormalPaddle(240,470);
         ball = new Ball(200,300);
         BrickLoader.createBricks();
+        background.setIcon("image/background.jpg");
     }
 
     private void checkEndGame() {
@@ -57,6 +59,7 @@ public class GamePanel extends JPanel{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        g.drawImage(background.getImage(),0,0,630,520,null);
         g.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight(), null);
         g.drawImage(ball.getImage(), ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight(), null);
         for (int i = 0; i < BrickLoader.brickArr.length; i++) {
@@ -70,6 +73,7 @@ public class GamePanel extends JPanel{
         gameInfo.read(User.score, g, 543,430);
 
         if(endGame == 1) {
+            Sound.clip.stop();
             Sound.play("\\sound\\gameover.wav");
             g.clearRect(0, 0, getWidth(), getHeight());
             gameInfo.read(lostMsg, g, 250, 250);
@@ -77,6 +81,7 @@ public class GamePanel extends JPanel{
         }
 
         else if(endGame == 2) {
+            Sound.clip.stop();
             Sound.play("\\sound\\gamewn.wav");
             g.clearRect (0, 0, getWidth(), getHeight());
             gameInfo.read(wonMsg, g, 190, 250);

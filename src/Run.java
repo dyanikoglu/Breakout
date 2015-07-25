@@ -2,8 +2,9 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 public class Run extends JFrame {
     public Run() {
-        JPanel panel = new MainMenu();
-        add(panel);
+        JPanel mainmenu = new MainMenu();
+        add(mainmenu);
+
         setTitle("Breakout");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(230, 90);
@@ -12,19 +13,19 @@ public class Run extends JFrame {
         setLocationRelativeTo(null);
 
         do{repaint();}while(MainMenu.flag);
+        remove(mainmenu);
 
-        remove(panel);
+        JPanel gamepanel = new GamePanel();
+        add(gamepanel);
 
-        JPanel panel2 = new GamePanel();
-        add(panel2);
         setSize(630, 520);
         setIgnoreRepaint(true);
         setLocationRelativeTo(null);
         setCursor(getToolkit().createCustomCursor(
-                new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new java.awt.Point(0, 0),
-                "null"));
+                new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new java.awt.Point(0, 0), "null"));
+        gamepanel.requestFocus();
 
-        panel2.requestFocus();
+        Sound.music();
     }
     public static void main(String[] args) {
         new Run();

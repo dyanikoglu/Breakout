@@ -1,11 +1,3 @@
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Random;
 public class Brick extends GameObject implements ICollidable {
 
@@ -40,10 +32,6 @@ public class Brick extends GameObject implements ICollidable {
         return this.brickType;
     }
 
-    public boolean getStatus() {
-        return this.status;
-    }
-
     public void setStatus(boolean status) {
         if(this.getType() == 1) { // first
             this.setIcon("image/brick_stone_2.png");
@@ -52,6 +40,10 @@ public class Brick extends GameObject implements ICollidable {
         else {
             this.status = status;
         }
+    }
+
+    public boolean getStatus() {
+        return this.status;
     }
 
     public void colResponse(Ball ball) {
@@ -112,7 +104,7 @@ public class Brick extends GameObject implements ICollidable {
                     Point.dirX = 1;
                     Point.dirY = -1;
                 }
-                else { // right
+                else {
                     Point.dirX = 1;
                     Point.dirY = 1;
                 }
