@@ -1,3 +1,11 @@
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Random;
 public class Brick extends GameObject implements ICollidable {
 
@@ -49,10 +57,19 @@ public class Brick extends GameObject implements ICollidable {
     public void colResponse(Ball ball) {
         User.calcScore(this.getType());
 
+        if(this.getType()==1)
+            Sound.play("\\sound\\stone.wav");
+        else if(this.getType()==4)
+            Sound.play("\\sound\\hit.wav");
+        else if(this.getType()==3)
+            Sound.play("\\sound\\glass.wav");
+        else
+            Sound.play("\\sound\\brick.wav");
+
         java.awt.Point pR = new java.awt.Point(ball.getX() + ball.getWidth() + 1, ball.getY());
         java.awt.Point pL = new java.awt.Point(ball.getX() - 1, ball.getY());
-        java.awt.Point pT = new java.awt.Point(ball.getX() + ball.getHeight() / 2, ball.getY() - 1);
-        java.awt.Point pB = new java.awt.Point(ball.getX() + ball.getHeight() / 2, ball.getY() + ball.getHeight() + 1);
+        java.awt.Point pT = new java.awt.Point(ball.getX() + ball.getWidth() / 2, ball.getY() - 1);
+        java.awt.Point pB = new java.awt.Point(ball.getX() + ball.getWidth() / 2, ball.getY() + ball.getHeight() + 1);
 
         if (this.getType() != 4) {
             if (this.getRect().contains(pR) && this.getType() != 3) { // right side

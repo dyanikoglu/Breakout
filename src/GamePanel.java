@@ -4,7 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.*;
 import java.util.Timer;
-public class Panel extends JPanel{
+public class GamePanel extends JPanel{
     protected static Paddle paddle;
     private Point velocity;
     private Ball ball;
@@ -19,7 +19,8 @@ public class Panel extends JPanel{
      */
     private int endGame = 0;
 
-    public Panel() {
+    public GamePanel() {
+        setBackground(Color.decode("#CBC1C7"));
         setFocusable(true);
         initGame();
         initTimer();
@@ -69,12 +70,14 @@ public class Panel extends JPanel{
         gameInfo.read(User.score, g, 543,430);
 
         if(endGame == 1) {
+            Sound.play("\\sound\\gameover.wav");
             g.clearRect(0, 0, getWidth(), getHeight());
             gameInfo.read(lostMsg, g, 250, 250);
             gameInfo.read("Your Score is " + User.score,g,197,280);
         }
 
         else if(endGame == 2) {
+            Sound.play("\\sound\\gamewn.wav");
             g.clearRect (0, 0, getWidth(), getHeight());
             gameInfo.read(wonMsg, g, 190, 250);
             gameInfo.read("Your Score is " + User.score,g,176,280);

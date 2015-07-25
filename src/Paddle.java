@@ -41,10 +41,12 @@ public class Paddle extends GameObject implements ICollidable {
 
     private void setType(Paddle paddle) {
         if (Math.random() < 0.1 && paddle.getType() != 2) { // %10 chance
-            if (Math.random() < 0.5) {
+            if (Math.random() < 0.5 && paddle.padType!=1) {
+                Sound.play("\\sound\\pwrup.wav");
                 paddle.padType = 1;
             }
-            else {
+            else if(paddle.padType!=2) {
+                Sound.play("\\sound\\pwrup.wav");
                 paddle.padType = 2;
             }
         }
@@ -72,6 +74,7 @@ public class Paddle extends GameObject implements ICollidable {
 
     public void colResponse(Ball ball) {
         if (colDetect(ball)) {
+            Sound.play("\\sound\\paddle.wav");
             Point.dirY = -Point.dirY;
             if (getType() == 2) {
                 Point.velY++;
