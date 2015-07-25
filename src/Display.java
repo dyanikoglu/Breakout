@@ -5,9 +5,9 @@ public class Display extends GameObject {
     private String name;
 
     public void read(String str,Graphics g, int x, int y) {
-        name = str.replaceAll("ı","i");
         this.setX(x);
         this.setY(y);
+        name = str.replaceAll("ı","i");
         uSplitArr = name.split("");
         for(int i=0;i<uSplitArr.length;i++) {
             drawToPanel(uSplitArr[i], g, i);

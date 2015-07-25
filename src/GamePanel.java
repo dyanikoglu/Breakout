@@ -21,7 +21,6 @@ public class GamePanel extends JPanel{
     private int endGame = 0;
 
     public GamePanel() {
-        setBackground(Color.decode("#CBC1C7"));
         setFocusable(true);
         initGame();
         initTimer();
