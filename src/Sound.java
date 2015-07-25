@@ -22,7 +22,7 @@ public class Sound {
     public static void music() {
         AudioInputStream inputStream = null;
         try {
-            inputStream = AudioSystem.getAudioInputStream(new File(BrickLoader.class.getProtectionDomain().getCodeSource().getLocation().getPath()+"sound\\background.wav"));
+            inputStream = AudioSystem.getAudioInputStream(new File( (BrickLoader.class.getProtectionDomain().getCodeSource().getLocation().getPath()+"sound\\background.wav").replaceAll("%20"," ") ));
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
