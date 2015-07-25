@@ -27,11 +27,11 @@ public class Display extends GameObject {
         if(letter.equalsIgnoreCase(" ")) {
             return;
         }
-        if(GamePanel.endGame==1) {
+        if(GamePanel.endGame==1) { //Print Red Text
             setIcon("image/" + letter + "2" + ".png");
             g.drawImage(this.getImage(), this.getX() + i * 16, this.getY(), 12, 16, null);
         }
-        else {
+        else { //Print Green Text
             setIcon("image/" + letter + ".png");
             g.drawImage(this.getImage(), this.getX() + i * 16, this.getY(), 12, 16, null);
         }
