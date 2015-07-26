@@ -13,13 +13,12 @@ public class Run extends JFrame {
         setLocationRelativeTo(null);
 
         do{repaint();}while(MainMenu.flag);
-        setVisible(false);
+
         remove(mainmenu);
 
         JPanel gamepanel = new GamePanel();
         add(gamepanel);
 
-        setVisible(true);
         setSize(630, 520);
         setIgnoreRepaint(true);
         setLocationRelativeTo(null);

@@ -29,7 +29,7 @@ public class GamePanel extends JPanel{
 
     private void initTimer() {
         timer = new Timer();
-        timer.scheduleAtFixedRate(new Loop(), 1000, 8);
+        timer.scheduleAtFixedRate(new Loop(), 10, 8);
     }
 
     private void initGame() {
@@ -82,7 +82,7 @@ public class GamePanel extends JPanel{
             gameInfo.read("Your Score is " + User.score,g,197,280);
         }
 
-        else {
+        else if(endGame == 2) {
             Sound.clip.stop();
             Sound.play("\\sound\\gamewn.wav");
             g.setColor(Color.yellow);
