@@ -29,7 +29,7 @@ public class GamePanel extends JPanel{
 
     private void initTimer() {
         timer = new Timer();
-        timer.scheduleAtFixedRate(new Loop(), 10, 8);
+        timer.scheduleAtFixedRate(new Loop(), 100, 8);
     }
 
     private void initGame() {
