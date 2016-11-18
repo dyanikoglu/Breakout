@@ -41,7 +41,7 @@ public class GameObject {
     }
 
     public void setIcon(String imageLoc) {
-        ImageIcon imgIcon = new ImageIcon(GameObject.class.getResource(imageLoc));
+        ImageIcon imgIcon = new ImageIcon(imageLoc);
         img = imgIcon.getImage();
     }
 

@@ -29,10 +29,11 @@ public class GamePanel extends JPanel{
 
     private void initTimer() {
         timer = new Timer();
-        timer.scheduleAtFixedRate(new Loop(), 100, 8);
+        timer.scheduleAtFixedRate(new Loop(), 1000, 8);
     }
 
     private void initGame() {
+		System.out.println(System.getProperty("user.dir"));
         velocity = new Point();
         gameInfo = new Display();
         paddle = new NormalPaddle(240,470);
