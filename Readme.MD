@@ -3,7 +3,7 @@ Retro Breakout
 
 A 8-bit retro-styled breakout game, created with JAVA.
 
-[![Retro Breakout Screenshot](http://i.hizliresim.com/R1yq77.png)
+![Retro Breakout Screenshot](http://i.hizliresim.com/R1yq77.png)
 
 
 Compile & Run
