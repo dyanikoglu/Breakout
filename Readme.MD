@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/dyanikoglu/Retro-Breakout-Game.svg?branch=master)](https://travis-ci.org/dyanikoglu/Retro-Breakout-Game) [![codebeat badge](https://codebeat.co/badges/bab50c6b-3a1a-426e-a895-ca5fec1c6b0d)](https://codebeat.co/projects/github-com-dyanikoglu-retro-breakout-game)
+
+
 Retro Breakout
 ================
 
