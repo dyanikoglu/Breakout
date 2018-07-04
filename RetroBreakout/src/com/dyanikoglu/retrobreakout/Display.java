@@ -1,3 +1,7 @@
+package com.dyanikoglu.retrobreakout;
+
+import com.dyanikoglu.retrobreakout.GameObject.GameObject;
+
 import java.awt.*;
 public class Display extends GameObject {
     private String[] uSplitArr;
@@ -28,11 +32,11 @@ public class Display extends GameObject {
             return;
         }
         if(GamePanel.endGame==1) { //Print Red Text
-            setIcon("image/" + letter + "2" + ".png");
+            setIcon(loader.getResource("image/" + letter + "2" + ".png"));
             g.drawImage(this.getImage(), this.getX() + i * 16, this.getY(), 12, 16, null);
         }
         else { //Print Green Text
-            setIcon("image/" + letter + ".png");
+            setIcon(loader.getResource("image/" + letter + ".png"));
             g.drawImage(this.getImage(), this.getX() + i * 16, this.getY(), 12, 16, null);
         }
     }

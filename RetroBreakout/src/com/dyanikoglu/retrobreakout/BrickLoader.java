@@ -1,13 +1,16 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+package com.dyanikoglu.retrobreakout;
+
+import com.dyanikoglu.retrobreakout.GameObject.Brick.*;
+
+import java.io.*;
+import java.net.URL;
+
 public class BrickLoader {
     public static Brick brickArr[] = new Brick[110];
     private static String splitArr[][] = new String[110][];
-    final static File PATH = new File(BrickLoader.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 
-    public static void createBricks() {
-        readCoordinates();
+    public static void createBricks(URL bricksPath) {
+        readCoordinates(bricksPath);
         for(int i=0;i<splitArr.length;i++) {
             if(Integer.parseInt(splitArr[i][2])==0) {
                 brickArr[i]= new NormalBrick(Integer.parseInt(splitArr[i][0]),Integer.parseInt(splitArr[i][1]));
@@ -27,19 +30,17 @@ public class BrickLoader {
         }
     }
 
-    private static void readCoordinates() {
-        int i=0;
-        String filePath = PATH+"\\txt\\bricks.txt";
-        filePath = filePath.replaceAll("%20"," ");
-        File f = new File(filePath);
+    private static void readCoordinates(URL bricksPath) {
+        BufferedReader in = null;
+        int i = 0;
         try {
-            Scanner scan = new Scanner(f);
+            in = new BufferedReader( new InputStreamReader(bricksPath.openStream()));
 
-            while(scan.hasNextLine()) {
-                String line = scan.nextLine();
-                splitArr[i++]=line.split(",");
-            }
-        } catch (FileNotFoundException e) {
+            String inputLine;
+            while ((inputLine = in.readLine()) != null)
+                splitArr[i++]=inputLine.split(",");
+            in.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

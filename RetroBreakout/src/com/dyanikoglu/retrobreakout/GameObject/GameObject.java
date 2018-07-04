@@ -1,8 +1,13 @@
+package com.dyanikoglu.retrobreakout.GameObject;
+
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
+
 public class GameObject {
     private int x,y,width,height;
     private Image img;
+    protected static final ClassLoader loader = GameObject.class.getClassLoader();
 
     public int getX() {
         return x;
@@ -40,7 +45,7 @@ public class GameObject {
         return img;
     }
 
-    public void setIcon(String imageLoc) {
+    public void setIcon(URL imageLoc) {
         ImageIcon imgIcon = new ImageIcon(imageLoc);
         img = imgIcon.getImage();
     }

@@ -1,7 +1,15 @@
+package com.dyanikoglu.retrobreakout;
+
+import com.dyanikoglu.retrobreakout.GameObject.Ball;
+import com.dyanikoglu.retrobreakout.GameObject.GameObject;
+import com.dyanikoglu.retrobreakout.GameObject.Paddle.NormalPaddle;
+import com.dyanikoglu.retrobreakout.GameObject.Paddle.Paddle;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 import java.util.*;
 import java.util.Timer;
 public class GamePanel extends JPanel{
@@ -12,6 +20,12 @@ public class GamePanel extends JPanel{
     private Display gameInfo;
     private String wonMsg = "Congratulations", lostMsg = "Game Over";
     private final GameObject background = new GameObject();
+    private final ClassLoader loader = GamePanel.class.getClassLoader();
+
+    // Resource URLs
+    private URL BricksURL;
+    private URL ImageURL;
+    private URL SoundURL;
 
     /**
      * endGame 0 : Game Continues
@@ -32,14 +46,24 @@ public class GamePanel extends JPanel{
         timer.scheduleAtFixedRate(new Loop(), 1000, 8);
     }
 
+
     private void initGame() {
-		System.out.println(System.getProperty("user.dir"));
         velocity = new Point();
         gameInfo = new Display();
         paddle = new NormalPaddle(240,470);
         ball = new Ball(200,300);
-        BrickLoader.createBricks();
-        background.setIcon("image/background.jpg");
+        BrickLoader.createBricks(loader.getResource("txt/bricks.txt"));
+        background.setIcon(loader.getResource("image/background.jpg"));
+
+        // Play background music in seperate thread
+        new Thread(
+                () -> {
+                    try {
+                        Sound.BackgroundMusic(loader.getResource("sound/background.wav"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }).start();
     }
 
     private void checkEndGame() {
@@ -76,7 +100,7 @@ public class GamePanel extends JPanel{
 
         else if(endGame == 1) {
             Sound.clip.stop();
-            Sound.play("\\sound\\gameover.wav");
+            Sound.Play(loader.getResource("sound/gameover.wav"));
             g.setColor(Color.black);
             g.fillRect(0,0,getWidth(), getHeight());
             gameInfo.read(lostMsg, g, 250, 250);
@@ -85,7 +109,7 @@ public class GamePanel extends JPanel{
 
         else if(endGame == 2) {
             Sound.clip.stop();
-            Sound.play("\\sound\\gamewn.wav");
+            Sound.Play(loader.getResource("sound/gamewn.wav"));
             g.setColor(Color.yellow);
             g.fillRect(0, 0, getWidth(), getHeight());
             gameInfo.read(wonMsg, g, 190, 250);

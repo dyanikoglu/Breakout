@@ -1,3 +1,5 @@
+package com.dyanikoglu.retrobreakout;
+
 public class User {
     static int score = 0;
     final static String name = MainMenu.nameTextField.getText();

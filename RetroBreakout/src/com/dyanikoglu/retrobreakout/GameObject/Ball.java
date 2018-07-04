@@ -1,6 +1,11 @@
+package com.dyanikoglu.retrobreakout.GameObject;
+
+import com.dyanikoglu.retrobreakout.BrickLoader;
+import com.dyanikoglu.retrobreakout.GameObject.GameObject;
+
 public class Ball extends GameObject {
     public Ball(int x,int y) {
-        this.setIcon("image/ball.png");
+        this.setIcon(loader.getResource("image/ball.png"));
         this.setX(x);
         this.setY(y);
         this.setWidth(16);

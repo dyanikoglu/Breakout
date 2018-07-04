@@ -1,3 +1,9 @@
+package com.dyanikoglu.retrobreakout.GameObject.Brick;
+
+import com.dyanikoglu.retrobreakout.*;
+import com.dyanikoglu.retrobreakout.GameObject.Ball;
+import com.dyanikoglu.retrobreakout.GameObject.GameObject;
+
 import java.util.Random;
 public class Brick extends GameObject implements ICollidable {
 
@@ -34,7 +40,7 @@ public class Brick extends GameObject implements ICollidable {
 
     public void setStatus(boolean status) {
         if(this.getType() == 1) { // first
-            this.setIcon("image/brick_stone_2.png");
+            this.setIcon(loader.getResource("image/brick_stone_2.png"));
             this.setType(5);
         }
         else {
@@ -50,13 +56,13 @@ public class Brick extends GameObject implements ICollidable {
         User.calcScore(this.getType());
 
         if(this.getType()==1)
-            Sound.play("\\sound\\stone.wav");
+            Sound.Play(loader.getResource("sound/stone.wav"));
         else if(this.getType()==4)
-            Sound.play("\\sound\\hit.wav");
+            Sound.Play(loader.getResource("sound/hit.wav"));
         else if(this.getType()==3)
-            Sound.play("\\sound\\glass.wav");
+            Sound.Play(loader.getResource("sound/glass.wav"));
         else
-            Sound.play("\\sound\\brick.wav");
+            Sound.Play(loader.getResource("sound/brick.wav"));
 
         java.awt.Point pR = new java.awt.Point(ball.getX() + ball.getWidth() + 1, ball.getY());
         java.awt.Point pL = new java.awt.Point(ball.getX() - 1, ball.getY());

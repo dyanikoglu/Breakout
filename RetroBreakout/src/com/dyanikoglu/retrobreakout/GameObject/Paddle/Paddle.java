@@ -1,4 +1,12 @@
- import java.awt.event.KeyEvent;
+package com.dyanikoglu.retrobreakout.GameObject.Paddle;
+
+import com.dyanikoglu.retrobreakout.GameObject.Ball;
+import com.dyanikoglu.retrobreakout.GameObject.GameObject;
+import com.dyanikoglu.retrobreakout.ICollidable;
+import com.dyanikoglu.retrobreakout.Point;
+import com.dyanikoglu.retrobreakout.Sound;
+
+import java.awt.event.KeyEvent;
  import java.lang.Math;
 public class Paddle extends GameObject implements ICollidable {
 /**
@@ -42,11 +50,11 @@ public class Paddle extends GameObject implements ICollidable {
     private void setType(Paddle paddle) {
         if (Math.random() < 0.1 && paddle.getType() != 2) { // %10 chance
             if (Math.random() < 0.5 && paddle.padType!=1) {
-                Sound.play("\\sound\\pwrup.wav");
+                Sound.Play(loader.getResource("sound/pwrup.wav"));
                 paddle.padType = 1;
             }
             else if(paddle.padType!=2) {
-                Sound.play("\\sound\\pwrup.wav");
+                Sound.Play(loader.getResource("sound/pwrup.wav"));
                 paddle.padType = 2;
             }
         }
@@ -75,9 +83,9 @@ public class Paddle extends GameObject implements ICollidable {
     public void colResponse(Ball ball) {
         if (colDetect(ball)) {
             if(getType()==2)
-                Sound.play("\\sound\\spdup.wav");
+                Sound.Play(loader.getResource("sound/spdup.wav"));
             else
-                Sound.play("\\sound\\paddle.wav");
+                Sound.Play(loader.getResource("sound/paddle.wav"));
 
             Point.dirY = -Point.dirY;
             if (getType() == 2) {

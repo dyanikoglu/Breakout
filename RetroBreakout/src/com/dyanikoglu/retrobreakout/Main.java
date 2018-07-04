@@ -1,7 +1,9 @@
+package com.dyanikoglu.retrobreakout;
+
 import javax.swing.*;
 import java.awt.image.BufferedImage;
-public class Run extends JFrame {
-    public Run() {
+public class Main extends JFrame {
+    public Main() {
         JPanel mainmenu = new MainMenu();
         add(mainmenu);
 
@@ -25,10 +27,8 @@ public class Run extends JFrame {
         setCursor(getToolkit().createCustomCursor(
                 new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new java.awt.Point(0, 0), "null"));
         gamepanel.requestFocus();
-
-        Sound.music();
     }
     public static void main(String[] args) {
-        new Run();
+        new Main();
     }
 }

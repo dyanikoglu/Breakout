@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.org/dyanikoglu/Retro-Breakout-Game.svg?branch=master)](https://travis-ci.org/dyanikoglu/Retro-Breakout-Game) [![codebeat badge](https://codebeat.co/badges/bab50c6b-3a1a-426e-a895-ca5fec1c6b0d)](https://codebeat.co/projects/github-com-dyanikoglu-retro-breakout-game)
-
-
 Retro Breakout
 ================
 
@@ -13,14 +10,14 @@ Compile & Run
 ==========
 
 ```
-javac Run.java
-java Run
+javac Main.java
+java Main
 ```
 
 Licence
 =======
 
-Copyright (C) 2015-2016 Doga Can Yanikoglu
+Copyright (C) 2015-2018 Doga Can Yanikoglu
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

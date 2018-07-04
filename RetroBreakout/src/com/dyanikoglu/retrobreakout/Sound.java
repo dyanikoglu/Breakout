@@ -1,15 +1,18 @@
+package com.dyanikoglu.retrobreakout;
+
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class Sound {
     public static Clip clip = null;
 
-    public static void play(String filename)
+    public static void Play(URL fileURL)
     {
         try {
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(new File( (BrickLoader.class.getProtectionDomain().getCodeSource().getLocation().getPath() + filename).replaceAll("%20"," ") )));
+            clip.open(AudioSystem.getAudioInputStream(fileURL));
             clip.start();
         }
         catch (Exception exc) {
@@ -17,10 +20,10 @@ public class Sound {
         }
     }
 
-    public static void music() {
+    public static void BackgroundMusic(URL fileURL) {
         AudioInputStream inputStream = null;
         try {
-            inputStream = AudioSystem.getAudioInputStream(new File( (BrickLoader.class.getProtectionDomain().getCodeSource().getLocation().getPath()+"sound\\background.wav").replaceAll("%20"," ") ));
+            inputStream = AudioSystem.getAudioInputStream(fileURL);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {

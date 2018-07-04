@@ -1,5 +1,10 @@
+package com.dyanikoglu.retrobreakout;
+
+import com.dyanikoglu.retrobreakout.GameObject.Ball;
+
 public class Point  {
-    static int dirX=1, dirY=1, velX=0, velY=0;
+    public static int dirX=1, dirY=1, velX=0, velY=0;
+
     public void control(Ball ball) {
         if(dirX==1) {
             if(dirY==1) {
